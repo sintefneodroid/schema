@@ -1,0 +1,4 @@
+rpc_service Environment {
+  React(Reaction):EnvironmentState;
+  Reset(Reaction):EnvironmentState;
+}

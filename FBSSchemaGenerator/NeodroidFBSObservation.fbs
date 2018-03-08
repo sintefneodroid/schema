@@ -1,0 +1,74 @@
+include "NeodroidFBSShared.fbs";
+
+namespace Neodroid.FBS.State;
+
+union FObservation {
+  FSingle,
+  FDouble,
+  FTriple,
+  FQuadruple,
+  FArray,
+
+  FRB,
+  FET,
+  FQT,
+
+  FString,
+  FByteArray,
+}
+
+table FSingle {
+  value:double;
+  range:FRange;
+}
+
+table FDouble {
+  vec2:FVector2;
+  x_range:FRange;
+  y_range:FRange;
+}
+
+table FTriple {
+  vec3:FVector3 (required);
+  x_range:FRange;
+  y_range:FRange;
+  z_range:FRange;
+}
+
+table FQuadruple{
+  quat:FQuaternion (required);
+  x_range:FRange;
+  y_range:FRange;
+  z_range:FRange;
+  w_range:FRange;
+}
+
+table FArray{
+  array:[float] (required);
+  ranges:[FRange];
+}
+
+table FRB {
+  body:FBody (required);
+}
+
+table FET {
+  transform:FEulerTransform (required);
+}
+
+table FQT {
+  transform:FQuaternionTransform (required);
+}
+
+table FString {
+  str:string (required);
+}
+
+enum FByteDataType:ubyte { PNG, JPEG, Other }
+
+table FByteArray {
+  bytes:[ubyte] (required);
+  type:FByteDataType;
+}
+
+file_identifier "OBSE";

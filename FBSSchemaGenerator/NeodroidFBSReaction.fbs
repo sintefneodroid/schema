@@ -1,0 +1,40 @@
+include "NeodroidFBSShared.fbs";
+
+namespace Neodroid.FBS.Reaction;
+
+table FReaction {
+  environment_name:string (key);
+
+  parameters:FReactionParameters (required);
+
+  motions:[FMotion];
+
+  unobservables:FUnobservables;
+  configurations:[FConfiguration];
+}
+
+struct FReactionParameters{
+  terminable:bool;
+
+  step:bool;
+
+  reset:bool;
+  configure:bool;
+  describe:bool;
+
+  episode_count:bool;
+}
+
+table FMotion {
+  actor_name:string (key);
+  motor_name:string (required);
+  strength:double;
+}
+
+table FConfiguration {
+  configurable_name:string (key);
+  configurable_value:double;
+}
+
+root_type FReaction;
+file_identifier "REAC";

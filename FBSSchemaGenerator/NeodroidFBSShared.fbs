@@ -1,0 +1,66 @@
+namespace Neodroid.FBS;
+
+table FUnobservables {
+  poses:[FQuaternionTransform];
+  bodies:[FBody];
+}
+
+struct FVector2 {
+  x:double;
+  y:double;
+}
+
+struct FVector3 {
+  x:double;
+  y:double;
+  z:double;
+}
+
+struct FQuaternion {
+  x:double;
+  y:double;
+  z:double;
+  w:double;
+}
+
+struct FQuaternionTransform {
+  position:FVector3;
+  rotation:FQuaternion;
+}
+
+struct FEulerTransform {
+  position:FVector3;
+  rotation:FVector3;
+  direction:FVector3;
+}
+
+struct FBody {
+  velocity:FVector3;
+  angular_velocity:FVector3;
+}
+
+struct FRange{
+  decimal_granularity:int;
+  max_value:float;
+  min_value:float;
+}
+
+struct FSimulatorConfiguration {
+  width:int;
+  height:int;
+  full_screen:bool;
+  quality_level:int;
+  time_scale:float;
+  target_frame_rate:float;
+  wait_every:int; //Use FWaitOn type instead
+  frame_skips:int;
+  reset_iterations:int;
+}
+
+/*enum FWaitOn:ubyte { // Not used yet due to flatbuffer enums being non-scalars
+  Never,
+  Update,
+  FixedUpdate
+}*/
+
+file_identifier "SHAR";
