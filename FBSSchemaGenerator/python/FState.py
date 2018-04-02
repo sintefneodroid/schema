@@ -125,7 +125,7 @@ class FState(object):
         return None
 
     # FState
-    def DebugMessage(self):
+    def SerialisedMessage(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
@@ -144,5 +144,5 @@ def FStateAddObservables(builder, observables): builder.PrependUOffsetTRelativeS
 def FStateStartObservablesVector(builder, numElems): return builder.StartVector(4, numElems, 4)
 def FStateAddUnobservables(builder, unobservables): builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(unobservables), 0)
 def FStateAddEnvironmentDescription(builder, environmentDescription): builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(environmentDescription), 0)
-def FStateAddDebugMessage(builder, debugMessage): builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(debugMessage), 0)
+def FStateAddSerialisedMessage(builder, serialisedMessage): builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(serialisedMessage), 0)
 def FStateEnd(builder): return builder.EndObject()

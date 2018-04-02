@@ -57,8 +57,28 @@ class FReaction(object):
         return 0
 
     # FReaction
-    def Unobservables(self):
+    def Displayables(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            from .FDisplayable import FDisplayable
+            obj = FDisplayable()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # FReaction
+    def DisplayablesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # FReaction
+    def Unobservables(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             from .FUnobservables import FUnobservables
@@ -69,7 +89,7 @@ class FReaction(object):
 
     # FReaction
     def Configurations(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -82,17 +102,27 @@ class FReaction(object):
 
     # FReaction
     def ConfigurationsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-def FReactionStart(builder): builder.StartObject(5)
+    # FReaction
+    def SerialisedMessage(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return bytes()
+
+def FReactionStart(builder): builder.StartObject(7)
 def FReactionAddEnvironmentName(builder, environmentName): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(environmentName), 0)
 def FReactionAddParameters(builder, parameters): builder.PrependStructSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(parameters), 0)
 def FReactionAddMotions(builder, motions): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(motions), 0)
 def FReactionStartMotionsVector(builder, numElems): return builder.StartVector(4, numElems, 4)
-def FReactionAddUnobservables(builder, unobservables): builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(unobservables), 0)
-def FReactionAddConfigurations(builder, configurations): builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(configurations), 0)
+def FReactionAddDisplayables(builder, displayables): builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(displayables), 0)
+def FReactionStartDisplayablesVector(builder, numElems): return builder.StartVector(4, numElems, 4)
+def FReactionAddUnobservables(builder, unobservables): builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(unobservables), 0)
+def FReactionAddConfigurations(builder, configurations): builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(configurations), 0)
 def FReactionStartConfigurationsVector(builder, numElems): return builder.StartVector(4, numElems, 4)
+def FReactionAddSerialisedMessage(builder, serialisedMessage): builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(serialisedMessage), 0)
 def FReactionEnd(builder): return builder.EndObject()

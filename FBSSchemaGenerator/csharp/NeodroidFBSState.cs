@@ -34,8 +34,8 @@ public struct FState : IFlatbufferObject
   public ArraySegment<byte>? GetObservablesBytes() { return __p.__vector_as_arraysegment(18); }
   public Neodroid.FBS.FUnobservables? Unobservables { get { int o = __p.__offset(20); return o != 0 ? (Neodroid.FBS.FUnobservables?)(new Neodroid.FBS.FUnobservables()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
   public FEnvironmentDescription? EnvironmentDescription { get { int o = __p.__offset(22); return o != 0 ? (FEnvironmentDescription?)(new FEnvironmentDescription()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
-  public string DebugMessage { get { int o = __p.__offset(24); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
-  public ArraySegment<byte>? GetDebugMessageBytes() { return __p.__vector_as_arraysegment(24); }
+  public string SerialisedMessage { get { int o = __p.__offset(24); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+  public ArraySegment<byte>? GetSerialisedMessageBytes() { return __p.__vector_as_arraysegment(24); }
 
   public static Offset<FState> CreateFState(FlatBufferBuilder builder,
       StringOffset environment_nameOffset = default(StringOffset),
@@ -48,9 +48,9 @@ public struct FState : IFlatbufferObject
       VectorOffset observablesOffset = default(VectorOffset),
       Offset<Neodroid.FBS.FUnobservables> unobservablesOffset = default(Offset<Neodroid.FBS.FUnobservables>),
       Offset<FEnvironmentDescription> environment_descriptionOffset = default(Offset<FEnvironmentDescription>),
-      StringOffset debug_messageOffset = default(StringOffset)) {
+      StringOffset serialised_messageOffset = default(StringOffset)) {
     builder.StartObject(11);
-    FState.AddDebugMessage(builder, debug_messageOffset);
+    FState.AddSerialisedMessage(builder, serialised_messageOffset);
     FState.AddEnvironmentDescription(builder, environment_descriptionOffset);
     FState.AddUnobservables(builder, unobservablesOffset);
     FState.AddObservables(builder, observablesOffset);
@@ -79,7 +79,7 @@ public struct FState : IFlatbufferObject
   public static void StartObservablesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddUnobservables(FlatBufferBuilder builder, Offset<Neodroid.FBS.FUnobservables> unobservablesOffset) { builder.AddOffset(8, unobservablesOffset.Value, 0); }
   public static void AddEnvironmentDescription(FlatBufferBuilder builder, Offset<FEnvironmentDescription> environmentDescriptionOffset) { builder.AddOffset(9, environmentDescriptionOffset.Value, 0); }
-  public static void AddDebugMessage(FlatBufferBuilder builder, StringOffset debugMessageOffset) { builder.AddOffset(10, debugMessageOffset.Value, 0); }
+  public static void AddSerialisedMessage(FlatBufferBuilder builder, StringOffset serialisedMessageOffset) { builder.AddOffset(10, serialisedMessageOffset.Value, 0); }
   public static Offset<FState> EndFState(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // environment_name

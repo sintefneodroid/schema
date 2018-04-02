@@ -1,0 +1,77 @@
+include "NeodroidFBSShared.fbs";
+
+namespace Neodroid.FBS;
+
+
+table FSingle {
+  value:double;
+  range:FRange;
+}
+
+table FDouble {
+  vec2:FVector2;
+  x_range:FRange;
+  y_range:FRange;
+}
+
+table FTriple {
+  vec3:FVector3 (required);
+  x_range:FRange;
+  y_range:FRange;
+  z_range:FRange;
+}
+
+table FQuadruple{
+  quat:FQuaternion (required);
+  x_range:FRange;
+  y_range:FRange;
+  z_range:FRange;
+  w_range:FRange;
+}
+
+table FArray{
+  array:[float] (required);
+  ranges:[FRange];
+}
+
+table FRB {
+  body:FBody (required);
+}
+
+table FET {
+  transform:FEulerTransform (required);
+}
+
+table FQT {
+  transform:FQuaternionTransform (required);
+}
+
+table FString {
+  str:string (required);
+}
+
+enum FByteDataType:ubyte { PNG, JPEG, Other }
+
+table FByteArray {
+  bytes:[ubyte] (required);
+  type:FByteDataType;
+}
+
+table FValue {
+  val:double;
+}
+
+table FValues {
+  values:[double] (required);
+}
+
+table FVector3s {
+  values:[FVector3] (required);
+}
+
+table FValuedVector3s {
+  vals:[double] (required);
+  values:[FVector3] (required);
+}
+
+file_identifier "TYPE";

@@ -1,4 +1,5 @@
 include "NeodroidFBSShared.fbs";
+include "NeodroidFBSTypes.fbs";
 
 namespace Neodroid.FBS.Reaction;
 
@@ -9,8 +10,11 @@ table FReaction {
 
   motions:[FMotion];
 
+  displayables:[FDisplayable];
   unobservables:FUnobservables;
   configurations:[FConfiguration];
+
+  serialised_message:string;
 }
 
 struct FReactionParameters{
@@ -34,6 +38,19 @@ table FMotion {
 table FConfiguration {
   configurable_name:string (key);
   configurable_value:double;
+}
+
+union FDisplayableValue {
+  FValue,
+  FValues,
+  FVector3s,
+  FValuedVector3s,
+  FString
+}
+
+table FDisplayable {
+  displayable_name:string (key);
+  displayable_value:FDisplayableValue;
 }
 
 root_type FReaction;

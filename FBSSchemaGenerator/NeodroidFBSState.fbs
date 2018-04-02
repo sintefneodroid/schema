@@ -19,7 +19,7 @@ table FState {
   unobservables:FUnobservables;
   environment_description:FEnvironmentDescription;
 
-  debug_message:string;
+  serialised_message:string;
 }
 
 table FObjective{

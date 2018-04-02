@@ -4,27 +4,27 @@
 
 import flatbuffers
 
-class FString(object):
+class FValue(object):
     __slots__ = ['_tab']
 
     @classmethod
-    def GetRootAsFString(cls, buf, offset):
+    def GetRootAsFValue(cls, buf, offset):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = FString()
+        x = FValue()
         x.Init(buf, n + offset)
         return x
 
-    # FString
+    # FValue
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # FString
-    def Str(self):
+    # FValue
+    def Val(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return bytes()
+            return self._tab.Get(flatbuffers.number_types.Float64Flags, o + self._tab.Pos)
+        return 0.0
 
-def FStringStart(builder): builder.StartObject(1)
-def FStringAddStr(builder, str): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(str), 0)
-def FStringEnd(builder): return builder.EndObject()
+def FValueStart(builder): builder.StartObject(1)
+def FValueAddVal(builder, val): builder.PrependFloat64Slot(0, val, 0.0)
+def FValueEnd(builder): return builder.EndObject()

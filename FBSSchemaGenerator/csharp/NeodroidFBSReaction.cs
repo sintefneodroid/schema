@@ -8,6 +8,16 @@ namespace Neodroid.FBS.Reaction
 using global::System;
 using global::FlatBuffers;
 
+public enum FDisplayableValue : byte
+{
+ NONE = 0,
+ FValue = 1,
+ FValues = 2,
+ FVector3s = 3,
+ FValuedVector3s = 4,
+ FString = 5,
+};
+
 public struct FReaction : IFlatbufferObject
 {
   private Table __p;
@@ -24,21 +34,30 @@ public struct FReaction : IFlatbufferObject
   public FMotion? Motions(int j) { int o = __p.__offset(8); return o != 0 ? (FMotion?)(new FMotion()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int MotionsLength { get { int o = __p.__offset(8); return o != 0 ? __p.__vector_len(o) : 0; } }
   public FMotion? MotionsByKey(string key) { int o = __p.__offset(8); return o != 0 ? FMotion.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
-  public Neodroid.FBS.FUnobservables? Unobservables { get { int o = __p.__offset(10); return o != 0 ? (Neodroid.FBS.FUnobservables?)(new Neodroid.FBS.FUnobservables()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
-  public FConfiguration? Configurations(int j) { int o = __p.__offset(12); return o != 0 ? (FConfiguration?)(new FConfiguration()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
-  public int ConfigurationsLength { get { int o = __p.__offset(12); return o != 0 ? __p.__vector_len(o) : 0; } }
-  public FConfiguration? ConfigurationsByKey(string key) { int o = __p.__offset(12); return o != 0 ? FConfiguration.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
+  public FDisplayable? Displayables(int j) { int o = __p.__offset(10); return o != 0 ? (FDisplayable?)(new FDisplayable()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
+  public int DisplayablesLength { get { int o = __p.__offset(10); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public FDisplayable? DisplayablesByKey(string key) { int o = __p.__offset(10); return o != 0 ? FDisplayable.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
+  public Neodroid.FBS.FUnobservables? Unobservables { get { int o = __p.__offset(12); return o != 0 ? (Neodroid.FBS.FUnobservables?)(new Neodroid.FBS.FUnobservables()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
+  public FConfiguration? Configurations(int j) { int o = __p.__offset(14); return o != 0 ? (FConfiguration?)(new FConfiguration()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
+  public int ConfigurationsLength { get { int o = __p.__offset(14); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public FConfiguration? ConfigurationsByKey(string key) { int o = __p.__offset(14); return o != 0 ? FConfiguration.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
+  public string SerialisedMessage { get { int o = __p.__offset(16); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+  public ArraySegment<byte>? GetSerialisedMessageBytes() { return __p.__vector_as_arraysegment(16); }
 
-  public static void StartFReaction(FlatBufferBuilder builder) { builder.StartObject(5); }
+  public static void StartFReaction(FlatBufferBuilder builder) { builder.StartObject(7); }
   public static void AddEnvironmentName(FlatBufferBuilder builder, StringOffset environmentNameOffset) { builder.AddOffset(0, environmentNameOffset.Value, 0); }
   public static void AddParameters(FlatBufferBuilder builder, Offset<FReactionParameters> parametersOffset) { builder.AddStruct(1, parametersOffset.Value, 0); }
   public static void AddMotions(FlatBufferBuilder builder, VectorOffset motionsOffset) { builder.AddOffset(2, motionsOffset.Value, 0); }
   public static VectorOffset CreateMotionsVector(FlatBufferBuilder builder, Offset<FMotion>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
   public static void StartMotionsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
-  public static void AddUnobservables(FlatBufferBuilder builder, Offset<Neodroid.FBS.FUnobservables> unobservablesOffset) { builder.AddOffset(3, unobservablesOffset.Value, 0); }
-  public static void AddConfigurations(FlatBufferBuilder builder, VectorOffset configurationsOffset) { builder.AddOffset(4, configurationsOffset.Value, 0); }
+  public static void AddDisplayables(FlatBufferBuilder builder, VectorOffset displayablesOffset) { builder.AddOffset(3, displayablesOffset.Value, 0); }
+  public static VectorOffset CreateDisplayablesVector(FlatBufferBuilder builder, Offset<FDisplayable>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static void StartDisplayablesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddUnobservables(FlatBufferBuilder builder, Offset<Neodroid.FBS.FUnobservables> unobservablesOffset) { builder.AddOffset(4, unobservablesOffset.Value, 0); }
+  public static void AddConfigurations(FlatBufferBuilder builder, VectorOffset configurationsOffset) { builder.AddOffset(5, configurationsOffset.Value, 0); }
   public static VectorOffset CreateConfigurationsVector(FlatBufferBuilder builder, Offset<FConfiguration>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
   public static void StartConfigurationsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddSerialisedMessage(FlatBufferBuilder builder, StringOffset serialisedMessageOffset) { builder.AddOffset(6, serialisedMessageOffset.Value, 0); }
   public static Offset<FReaction> EndFReaction(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // environment_name
@@ -216,6 +235,68 @@ public struct FConfiguration : IFlatbufferObject
         span -= middle;
       } else {
         return new FConfiguration().__assign(tableOffset, bb);
+      }
+    }
+    return null;
+  }
+};
+
+public struct FDisplayable : IFlatbufferObject
+{
+  private Table __p;
+  public ByteBuffer ByteBuffer { get { return __p.bb; } }
+  public static FDisplayable GetRootAsFDisplayable(ByteBuffer _bb) { return GetRootAsFDisplayable(_bb, new FDisplayable()); }
+  public static FDisplayable GetRootAsFDisplayable(ByteBuffer _bb, FDisplayable obj) { return (obj.__assign(_bb.GetInt(_bb.Position) + _bb.Position, _bb)); }
+  public void __init(int _i, ByteBuffer _bb) { __p.bb_pos = _i; __p.bb = _bb; }
+  public FDisplayable __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
+
+  public string DisplayableName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+  public ArraySegment<byte>? GetDisplayableNameBytes() { return __p.__vector_as_arraysegment(4); }
+  public FDisplayableValue DisplayableValueType { get { int o = __p.__offset(6); return o != 0 ? (FDisplayableValue)__p.bb.Get(o + __p.bb_pos) : FDisplayableValue.NONE; } }
+  public TTable? DisplayableValue<TTable>() where TTable : struct, IFlatbufferObject { int o = __p.__offset(8); return o != 0 ? (TTable?)__p.__union<TTable>(o) : null; }
+
+  public static Offset<FDisplayable> CreateFDisplayable(FlatBufferBuilder builder,
+      StringOffset displayable_nameOffset = default(StringOffset),
+      FDisplayableValue displayable_value_type = FDisplayableValue.NONE,
+      int displayable_valueOffset = 0) {
+    builder.StartObject(3);
+    FDisplayable.AddDisplayableValue(builder, displayable_valueOffset);
+    FDisplayable.AddDisplayableName(builder, displayable_nameOffset);
+    FDisplayable.AddDisplayableValueType(builder, displayable_value_type);
+    return FDisplayable.EndFDisplayable(builder);
+  }
+
+  public static void StartFDisplayable(FlatBufferBuilder builder) { builder.StartObject(3); }
+  public static void AddDisplayableName(FlatBufferBuilder builder, StringOffset displayableNameOffset) { builder.AddOffset(0, displayableNameOffset.Value, 0); }
+  public static void AddDisplayableValueType(FlatBufferBuilder builder, FDisplayableValue displayableValueType) { builder.AddByte(1, (byte)displayableValueType, 0); }
+  public static void AddDisplayableValue(FlatBufferBuilder builder, int displayableValueOffset) { builder.AddOffset(2, displayableValueOffset, 0); }
+  public static Offset<FDisplayable> EndFDisplayable(FlatBufferBuilder builder) {
+    int o = builder.EndObject();
+    builder.Required(o, 4);  // displayable_name
+    return new Offset<FDisplayable>(o);
+  }
+
+  public static VectorOffset CreateSortedVectorOfFDisplayable(FlatBufferBuilder builder, Offset<FDisplayable>[] offsets) {
+    Array.Sort(offsets, (Offset<FDisplayable> o1, Offset<FDisplayable> o2) => Table.CompareStrings(Table.__offset(4, o1.Value, builder.DataBuffer), Table.__offset(4, o2.Value, builder.DataBuffer), builder.DataBuffer));
+    return builder.CreateVectorOfTables(offsets);
+  }
+
+  public static FDisplayable? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
+    byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
+    int span = bb.GetInt(vectorLocation - 4);
+    int start = 0;
+    while (span != 0) {
+      int middle = span / 2;
+      int tableOffset = Table.__indirect(vectorLocation + 4 * (start + middle), bb);
+      int comp = Table.CompareStrings(Table.__offset(4, bb.Length - tableOffset, bb), byteKey, bb);
+      if (comp > 0) {
+        span = middle;
+      } else if (comp < 0) {
+        middle++;
+        start += middle;
+        span -= middle;
+      } else {
+        return new FDisplayable().__assign(tableOffset, bb);
       }
     }
     return null;
