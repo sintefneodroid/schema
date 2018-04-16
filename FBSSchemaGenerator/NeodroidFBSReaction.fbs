@@ -45,7 +45,8 @@ union FDisplayableValue {
   FValues,
   FVector3s,
   FValuedVector3s,
-  FString
+  FString,
+  FByteArray
 }
 
 table FDisplayable {

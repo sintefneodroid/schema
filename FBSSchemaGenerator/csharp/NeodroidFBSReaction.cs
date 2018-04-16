@@ -16,6 +16,7 @@ public enum FDisplayableValue : byte
  FVector3s = 3,
  FValuedVector3s = 4,
  FString = 5,
+ FByteArray = 6,
 };
 
 public struct FReaction : IFlatbufferObject

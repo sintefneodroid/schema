@@ -15,7 +15,7 @@ union FObservation {
   FQT,
 
   FString,
-  FByteArray,
+  FByteArray
 }
 
 file_identifier "OBSE";

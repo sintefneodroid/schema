@@ -9,4 +9,5 @@ class FDisplayableValue(object):
     FVector3s = 3
     FValuedVector3s = 4
     FString = 5
+    FByteArray = 6
 
