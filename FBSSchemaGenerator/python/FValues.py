@@ -19,7 +19,7 @@ class FValues(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # FValues
-    def Values(self, j):
+    def Vals(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             a = self._tab.Vector(o)
@@ -27,20 +27,20 @@ class FValues(object):
         return 0
 
     # FValues
-    def ValuesAsNumpy(self):
+    def ValsAsNumpy(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Float64Flags, o)
         return 0
 
     # FValues
-    def ValuesLength(self):
+    def ValsLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
 def FValuesStart(builder): builder.StartObject(1)
-def FValuesAddValues(builder, values): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(values), 0)
-def FValuesStartValuesVector(builder, numElems): return builder.StartVector(8, numElems, 8)
+def FValuesAddVals(builder, vals): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(vals), 0)
+def FValuesStartValsVector(builder, numElems): return builder.StartVector(8, numElems, 8)
 def FValuesEnd(builder): return builder.EndObject()

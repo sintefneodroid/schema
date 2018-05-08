@@ -41,7 +41,7 @@ class FValuedVector3s(object):
         return 0
 
     # FValuedVector3s
-    def Values(self, j):
+    def Points(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             x = self._tab.Vector(o)
@@ -53,7 +53,7 @@ class FValuedVector3s(object):
         return None
 
     # FValuedVector3s
-    def ValuesLength(self):
+    def PointsLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.VectorLen(o)
@@ -62,6 +62,6 @@ class FValuedVector3s(object):
 def FValuedVector3sStart(builder): builder.StartObject(2)
 def FValuedVector3sAddVals(builder, vals): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(vals), 0)
 def FValuedVector3sStartValsVector(builder, numElems): return builder.StartVector(8, numElems, 8)
-def FValuedVector3sAddValues(builder, values): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(values), 0)
-def FValuedVector3sStartValuesVector(builder, numElems): return builder.StartVector(24, numElems, 8)
+def FValuedVector3sAddPoints(builder, points): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(points), 0)
+def FValuedVector3sStartPointsVector(builder, numElems): return builder.StartVector(24, numElems, 8)
 def FValuedVector3sEnd(builder): return builder.EndObject()

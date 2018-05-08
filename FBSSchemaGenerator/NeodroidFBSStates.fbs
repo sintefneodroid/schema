@@ -1,0 +1,10 @@
+include "NeodroidFBSState.fbs";
+
+namespace Neodroid.FBS.State;
+
+table FStates{
+  states:[FState];
+}
+
+root_type FStates;
+file_identifier "XSTA";

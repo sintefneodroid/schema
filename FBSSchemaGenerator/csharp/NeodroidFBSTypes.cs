@@ -308,25 +308,46 @@ public struct FValues : IFlatbufferObject
   public void __init(int _i, ByteBuffer _bb) { __p.bb_pos = _i; __p.bb = _bb; }
   public FValues __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
-  public double Values(int j) { int o = __p.__offset(4); return o != 0 ? __p.bb.GetDouble(__p.__vector(o) + j * 8) : (double)0; }
-  public int ValuesLength { get { int o = __p.__offset(4); return o != 0 ? __p.__vector_len(o) : 0; } }
-  public ArraySegment<byte>? GetValuesBytes() { return __p.__vector_as_arraysegment(4); }
+  public double Vals(int j) { int o = __p.__offset(4); return o != 0 ? __p.bb.GetDouble(__p.__vector(o) + j * 8) : (double)0; }
+  public int ValsLength { get { int o = __p.__offset(4); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public ArraySegment<byte>? GetValsBytes() { return __p.__vector_as_arraysegment(4); }
 
   public static Offset<FValues> CreateFValues(FlatBufferBuilder builder,
-      VectorOffset valuesOffset = default(VectorOffset)) {
+      VectorOffset valsOffset = default(VectorOffset)) {
     builder.StartObject(1);
-    FValues.AddValues(builder, valuesOffset);
+    FValues.AddVals(builder, valsOffset);
     return FValues.EndFValues(builder);
   }
 
   public static void StartFValues(FlatBufferBuilder builder) { builder.StartObject(1); }
-  public static void AddValues(FlatBufferBuilder builder, VectorOffset valuesOffset) { builder.AddOffset(0, valuesOffset.Value, 0); }
-  public static VectorOffset CreateValuesVector(FlatBufferBuilder builder, double[] data) { builder.StartVector(8, data.Length, 8); for (int i = data.Length - 1; i >= 0; i--) builder.AddDouble(data[i]); return builder.EndVector(); }
-  public static void StartValuesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(8, numElems, 8); }
+  public static void AddVals(FlatBufferBuilder builder, VectorOffset valsOffset) { builder.AddOffset(0, valsOffset.Value, 0); }
+  public static VectorOffset CreateValsVector(FlatBufferBuilder builder, double[] data) { builder.StartVector(8, data.Length, 8); for (int i = data.Length - 1; i >= 0; i--) builder.AddDouble(data[i]); return builder.EndVector(); }
+  public static void StartValsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(8, numElems, 8); }
   public static Offset<FValues> EndFValues(FlatBufferBuilder builder) {
     int o = builder.EndObject();
-    builder.Required(o, 4);  // values
+    builder.Required(o, 4);  // vals
     return new Offset<FValues>(o);
+  }
+};
+
+public struct FValuedVector3Point : IFlatbufferObject
+{
+  private Table __p;
+  public ByteBuffer ByteBuffer { get { return __p.bb; } }
+  public static FValuedVector3Point GetRootAsFValuedVector3Point(ByteBuffer _bb) { return GetRootAsFValuedVector3Point(_bb, new FValuedVector3Point()); }
+  public static FValuedVector3Point GetRootAsFValuedVector3Point(ByteBuffer _bb, FValuedVector3Point obj) { return (obj.__assign(_bb.GetInt(_bb.Position) + _bb.Position, _bb)); }
+  public void __init(int _i, ByteBuffer _bb) { __p.bb_pos = _i; __p.bb = _bb; }
+  public FValuedVector3Point __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
+
+  public double Val { get { int o = __p.__offset(4); return o != 0 ? __p.bb.GetDouble(o + __p.bb_pos) : (double)0.0; } }
+  public FVector3? Point { get { int o = __p.__offset(6); return o != 0 ? (FVector3?)(new FVector3()).__assign(o + __p.bb_pos, __p.bb) : null; } }
+
+  public static void StartFValuedVector3Point(FlatBufferBuilder builder) { builder.StartObject(2); }
+  public static void AddVal(FlatBufferBuilder builder, double val) { builder.AddDouble(0, val, 0.0); }
+  public static void AddPoint(FlatBufferBuilder builder, Offset<FVector3> pointOffset) { builder.AddStruct(1, pointOffset.Value, 0); }
+  public static Offset<FValuedVector3Point> EndFValuedVector3Point(FlatBufferBuilder builder) {
+    int o = builder.EndObject();
+    return new Offset<FValuedVector3Point>(o);
   }
 };
 
@@ -339,22 +360,22 @@ public struct FVector3s : IFlatbufferObject
   public void __init(int _i, ByteBuffer _bb) { __p.bb_pos = _i; __p.bb = _bb; }
   public FVector3s __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
-  public FVector3? Values(int j) { int o = __p.__offset(4); return o != 0 ? (FVector3?)(new FVector3()).__assign(__p.__vector(o) + j * 24, __p.bb) : null; }
-  public int ValuesLength { get { int o = __p.__offset(4); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public FVector3? Points(int j) { int o = __p.__offset(4); return o != 0 ? (FVector3?)(new FVector3()).__assign(__p.__vector(o) + j * 24, __p.bb) : null; }
+  public int PointsLength { get { int o = __p.__offset(4); return o != 0 ? __p.__vector_len(o) : 0; } }
 
   public static Offset<FVector3s> CreateFVector3s(FlatBufferBuilder builder,
-      VectorOffset valuesOffset = default(VectorOffset)) {
+      VectorOffset pointsOffset = default(VectorOffset)) {
     builder.StartObject(1);
-    FVector3s.AddValues(builder, valuesOffset);
+    FVector3s.AddPoints(builder, pointsOffset);
     return FVector3s.EndFVector3s(builder);
   }
 
   public static void StartFVector3s(FlatBufferBuilder builder) { builder.StartObject(1); }
-  public static void AddValues(FlatBufferBuilder builder, VectorOffset valuesOffset) { builder.AddOffset(0, valuesOffset.Value, 0); }
-  public static void StartValuesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(24, numElems, 8); }
+  public static void AddPoints(FlatBufferBuilder builder, VectorOffset pointsOffset) { builder.AddOffset(0, pointsOffset.Value, 0); }
+  public static void StartPointsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(24, numElems, 8); }
   public static Offset<FVector3s> EndFVector3s(FlatBufferBuilder builder) {
     int o = builder.EndObject();
-    builder.Required(o, 4);  // values
+    builder.Required(o, 4);  // points
     return new Offset<FVector3s>(o);
   }
 };
@@ -371,14 +392,14 @@ public struct FValuedVector3s : IFlatbufferObject
   public double Vals(int j) { int o = __p.__offset(4); return o != 0 ? __p.bb.GetDouble(__p.__vector(o) + j * 8) : (double)0; }
   public int ValsLength { get { int o = __p.__offset(4); return o != 0 ? __p.__vector_len(o) : 0; } }
   public ArraySegment<byte>? GetValsBytes() { return __p.__vector_as_arraysegment(4); }
-  public FVector3? Values(int j) { int o = __p.__offset(6); return o != 0 ? (FVector3?)(new FVector3()).__assign(__p.__vector(o) + j * 24, __p.bb) : null; }
-  public int ValuesLength { get { int o = __p.__offset(6); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public FVector3? Points(int j) { int o = __p.__offset(6); return o != 0 ? (FVector3?)(new FVector3()).__assign(__p.__vector(o) + j * 24, __p.bb) : null; }
+  public int PointsLength { get { int o = __p.__offset(6); return o != 0 ? __p.__vector_len(o) : 0; } }
 
   public static Offset<FValuedVector3s> CreateFValuedVector3s(FlatBufferBuilder builder,
       VectorOffset valsOffset = default(VectorOffset),
-      VectorOffset valuesOffset = default(VectorOffset)) {
+      VectorOffset pointsOffset = default(VectorOffset)) {
     builder.StartObject(2);
-    FValuedVector3s.AddValues(builder, valuesOffset);
+    FValuedVector3s.AddPoints(builder, pointsOffset);
     FValuedVector3s.AddVals(builder, valsOffset);
     return FValuedVector3s.EndFValuedVector3s(builder);
   }
@@ -387,12 +408,12 @@ public struct FValuedVector3s : IFlatbufferObject
   public static void AddVals(FlatBufferBuilder builder, VectorOffset valsOffset) { builder.AddOffset(0, valsOffset.Value, 0); }
   public static VectorOffset CreateValsVector(FlatBufferBuilder builder, double[] data) { builder.StartVector(8, data.Length, 8); for (int i = data.Length - 1; i >= 0; i--) builder.AddDouble(data[i]); return builder.EndVector(); }
   public static void StartValsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(8, numElems, 8); }
-  public static void AddValues(FlatBufferBuilder builder, VectorOffset valuesOffset) { builder.AddOffset(1, valuesOffset.Value, 0); }
-  public static void StartValuesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(24, numElems, 8); }
+  public static void AddPoints(FlatBufferBuilder builder, VectorOffset pointsOffset) { builder.AddOffset(1, pointsOffset.Value, 0); }
+  public static void StartPointsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(24, numElems, 8); }
   public static Offset<FValuedVector3s> EndFValuedVector3s(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // vals
-    builder.Required(o, 6);  // values
+    builder.Required(o, 6);  // points
     return new Offset<FValuedVector3s>(o);
   }
 };

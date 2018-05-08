@@ -62,16 +62,21 @@ table FValue {
 }
 
 table FValues {
-  values:[double] (required);
+  vals:[double] (required);
+}
+
+table FValuedVector3Point {
+  val:double;
+  point:FVector3;
 }
 
 table FVector3s {
-  values:[FVector3] (required);
+  points:[FVector3] (required);
 }
 
 table FValuedVector3s {
-  vals:[double] (required);
-  values:[FVector3] (required);
+vals:[double](required);
+points:[FVector3](required);
 }
 
 file_identifier "TYPE";

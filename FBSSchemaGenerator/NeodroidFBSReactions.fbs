@@ -1,0 +1,10 @@
+include "NeodroidFBSReaction.fbs";
+
+namespace Neodroid.FBS.Reaction;
+
+table FReactions{
+  reactions:[FReaction];
+}
+
+root_type FReactions;
+file_identifier "XREA";
