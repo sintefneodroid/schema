@@ -216,9 +216,16 @@ public struct FSimulatorConfiguration : IFlatbufferObject
   public int WaitEvery { get { return __p.bb.GetInt(__p.bb_pos + 24); } }
   public int FrameSkips { get { return __p.bb.GetInt(__p.bb_pos + 28); } }
   public int ResetIterations { get { return __p.bb.GetInt(__p.bb_pos + 32); } }
+  public int NumOfEnvironments { get { return __p.bb.GetInt(__p.bb_pos + 36); } }
+  public bool DoSerialiseIndidualObservables { get { return 0!=__p.bb.Get(__p.bb_pos + 40); } }
+  public bool DoSerialiseUnobservables { get { return 0!=__p.bb.Get(__p.bb_pos + 41); } }
 
-  public static Offset<FSimulatorConfiguration> CreateFSimulatorConfiguration(FlatBufferBuilder builder, int Width, int Height, bool FullScreen, int QualityLevel, float TimeScale, float TargetFrameRate, int WaitEvery, int FrameSkips, int ResetIterations) {
-    builder.Prep(4, 36);
+  public static Offset<FSimulatorConfiguration> CreateFSimulatorConfiguration(FlatBufferBuilder builder, int Width, int Height, bool FullScreen, int QualityLevel, float TimeScale, float TargetFrameRate, int WaitEvery, int FrameSkips, int ResetIterations, int NumOfEnvironments, bool DoSerialiseIndidualObservables, bool DoSerialiseUnobservables) {
+    builder.Prep(4, 44);
+    builder.Pad(2);
+    builder.PutBool(DoSerialiseUnobservables);
+    builder.PutBool(DoSerialiseIndidualObservables);
+    builder.PutInt(NumOfEnvironments);
     builder.PutInt(ResetIterations);
     builder.PutInt(FrameSkips);
     builder.PutInt(WaitEvery);

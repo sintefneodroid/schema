@@ -161,27 +161,35 @@ public struct FEnvironmentDescription : IFlatbufferObject
   public FObjective? Objective { get { int o = __p.__offset(4); return o != 0 ? (FObjective?)(new FObjective()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
   public FObjective? AvailableObjectives(int j) { int o = __p.__offset(6); return o != 0 ? (FObjective?)(new FObjective()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int AvailableObjectivesLength { get { int o = __p.__offset(6); return o != 0 ? __p.__vector_len(o) : 0; } }
-  public string ApiVersion { get { int o = __p.__offset(8); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
-  public ArraySegment<byte>? GetApiVersionBytes() { return __p.__vector_as_arraysegment(8); }
-  public Neodroid.FBS.FSimulatorConfiguration? SimulatorConfiguration { get { int o = __p.__offset(10); return o != 0 ? (Neodroid.FBS.FSimulatorConfiguration?)(new Neodroid.FBS.FSimulatorConfiguration()).__assign(o + __p.bb_pos, __p.bb) : null; } }
-  public FActor? Actors(int j) { int o = __p.__offset(12); return o != 0 ? (FActor?)(new FActor()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
-  public int ActorsLength { get { int o = __p.__offset(12); return o != 0 ? __p.__vector_len(o) : 0; } }
-  public FActor? ActorsByKey(string key) { int o = __p.__offset(12); return o != 0 ? FActor.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
-  public FConfigurable? Configurables(int j) { int o = __p.__offset(14); return o != 0 ? (FConfigurable?)(new FConfigurable()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
-  public int ConfigurablesLength { get { int o = __p.__offset(14); return o != 0 ? __p.__vector_len(o) : 0; } }
-  public FConfigurable? ConfigurablesByKey(string key) { int o = __p.__offset(14); return o != 0 ? FConfigurable.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
+  public FActor? Actors(int j) { int o = __p.__offset(8); return o != 0 ? (FActor?)(new FActor()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
+  public int ActorsLength { get { int o = __p.__offset(8); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public FActor? ActorsByKey(string key) { int o = __p.__offset(8); return o != 0 ? FActor.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
+  public FConfigurable? Configurables(int j) { int o = __p.__offset(10); return o != 0 ? (FConfigurable?)(new FConfigurable()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
+  public int ConfigurablesLength { get { int o = __p.__offset(10); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public FConfigurable? ConfigurablesByKey(string key) { int o = __p.__offset(10); return o != 0 ? FConfigurable.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
 
-  public static void StartFEnvironmentDescription(FlatBufferBuilder builder) { builder.StartObject(6); }
+  public static Offset<FEnvironmentDescription> CreateFEnvironmentDescription(FlatBufferBuilder builder,
+      Offset<FObjective> objectiveOffset = default(Offset<FObjective>),
+      VectorOffset available_objectivesOffset = default(VectorOffset),
+      VectorOffset actorsOffset = default(VectorOffset),
+      VectorOffset configurablesOffset = default(VectorOffset)) {
+    builder.StartObject(4);
+    FEnvironmentDescription.AddConfigurables(builder, configurablesOffset);
+    FEnvironmentDescription.AddActors(builder, actorsOffset);
+    FEnvironmentDescription.AddAvailableObjectives(builder, available_objectivesOffset);
+    FEnvironmentDescription.AddObjective(builder, objectiveOffset);
+    return FEnvironmentDescription.EndFEnvironmentDescription(builder);
+  }
+
+  public static void StartFEnvironmentDescription(FlatBufferBuilder builder) { builder.StartObject(4); }
   public static void AddObjective(FlatBufferBuilder builder, Offset<FObjective> objectiveOffset) { builder.AddOffset(0, objectiveOffset.Value, 0); }
   public static void AddAvailableObjectives(FlatBufferBuilder builder, VectorOffset availableObjectivesOffset) { builder.AddOffset(1, availableObjectivesOffset.Value, 0); }
   public static VectorOffset CreateAvailableObjectivesVector(FlatBufferBuilder builder, Offset<FObjective>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
   public static void StartAvailableObjectivesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
-  public static void AddApiVersion(FlatBufferBuilder builder, StringOffset apiVersionOffset) { builder.AddOffset(2, apiVersionOffset.Value, 0); }
-  public static void AddSimulatorConfiguration(FlatBufferBuilder builder, Offset<Neodroid.FBS.FSimulatorConfiguration> simulatorConfigurationOffset) { builder.AddStruct(3, simulatorConfigurationOffset.Value, 0); }
-  public static void AddActors(FlatBufferBuilder builder, VectorOffset actorsOffset) { builder.AddOffset(4, actorsOffset.Value, 0); }
+  public static void AddActors(FlatBufferBuilder builder, VectorOffset actorsOffset) { builder.AddOffset(2, actorsOffset.Value, 0); }
   public static VectorOffset CreateActorsVector(FlatBufferBuilder builder, Offset<FActor>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
   public static void StartActorsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
-  public static void AddConfigurables(FlatBufferBuilder builder, VectorOffset configurablesOffset) { builder.AddOffset(5, configurablesOffset.Value, 0); }
+  public static void AddConfigurables(FlatBufferBuilder builder, VectorOffset configurablesOffset) { builder.AddOffset(3, configurablesOffset.Value, 0); }
   public static VectorOffset CreateConfigurablesVector(FlatBufferBuilder builder, Offset<FConfigurable>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
   public static void StartConfigurablesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static Offset<FEnvironmentDescription> EndFEnvironmentDescription(FlatBufferBuilder builder) {

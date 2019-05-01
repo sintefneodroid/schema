@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 rm csharp/ -r
 mkdir csharp
 flatc -n -o csharp/ NeodroidFBSShared.fbs --gen-onefile

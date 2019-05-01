@@ -21,18 +21,16 @@ public struct FStates : IFlatbufferObject
   public FState? States(int j) { int o = __p.__offset(4); return o != 0 ? (FState?)(new FState()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int StatesLength { get { int o = __p.__offset(4); return o != 0 ? __p.__vector_len(o) : 0; } }
   public FState? StatesByKey(string key) { int o = __p.__offset(4); return o != 0 ? FState.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
+  public string ApiVersion { get { int o = __p.__offset(6); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+  public ArraySegment<byte>? GetApiVersionBytes() { return __p.__vector_as_arraysegment(6); }
+  public Neodroid.FBS.FSimulatorConfiguration? SimulatorConfiguration { get { int o = __p.__offset(8); return o != 0 ? (Neodroid.FBS.FSimulatorConfiguration?)(new Neodroid.FBS.FSimulatorConfiguration()).__assign(o + __p.bb_pos, __p.bb) : null; } }
 
-  public static Offset<FStates> CreateFStates(FlatBufferBuilder builder,
-      VectorOffset statesOffset = default(VectorOffset)) {
-    builder.StartObject(1);
-    FStates.AddStates(builder, statesOffset);
-    return FStates.EndFStates(builder);
-  }
-
-  public static void StartFStates(FlatBufferBuilder builder) { builder.StartObject(1); }
+  public static void StartFStates(FlatBufferBuilder builder) { builder.StartObject(3); }
   public static void AddStates(FlatBufferBuilder builder, VectorOffset statesOffset) { builder.AddOffset(0, statesOffset.Value, 0); }
   public static VectorOffset CreateStatesVector(FlatBufferBuilder builder, Offset<FState>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
   public static void StartStatesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddApiVersion(FlatBufferBuilder builder, StringOffset apiVersionOffset) { builder.AddOffset(1, apiVersionOffset.Value, 0); }
+  public static void AddSimulatorConfiguration(FlatBufferBuilder builder, Offset<Neodroid.FBS.FSimulatorConfiguration> simulatorConfigurationOffset) { builder.AddStruct(2, simulatorConfigurationOffset.Value, 0); }
   public static Offset<FStates> EndFStates(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     return new Offset<FStates>(o);

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 rm python/ -r
 mkdir python
 flatc -p -o python/ NeodroidFBSShared.fbs --gen-onefile

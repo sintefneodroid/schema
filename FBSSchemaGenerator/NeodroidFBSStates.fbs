@@ -4,6 +4,8 @@ namespace Neodroid.FBS.State;
 
 table FStates{
   states:[FState];
+  api_version:string;
+  simulator_configuration:FSimulatorConfiguration;
 }
 
 root_type FStates;
