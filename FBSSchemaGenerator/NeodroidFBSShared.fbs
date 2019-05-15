@@ -56,7 +56,7 @@ struct FSimulatorConfiguration {
   frame_skips:int;
   reset_iterations:int;
   num_of_environments:int;
-  do_serialise_indidual_observables:bool;
+  do_serialise_indidual_sensors:bool;
   do_serialise_unobservables:bool;
 }
 

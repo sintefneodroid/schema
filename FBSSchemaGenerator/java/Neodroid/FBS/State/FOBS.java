@@ -11,11 +11,12 @@ import com.google.flatbuffers.*;
 public final class FOBS extends Table {
   public static FOBS getRootAsFOBS(ByteBuffer _bb) { return getRootAsFOBS(_bb, new FOBS()); }
   public static FOBS getRootAsFOBS(ByteBuffer _bb, FOBS obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FOBS __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public String observationName() { int o = __offset(4); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer observationNameAsByteBuffer() { return __vector_as_bytebuffer(4, 1); }
+  public ByteBuffer observationNameInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 1); }
   public byte observationType() { int o = __offset(6); return o != 0 ? bb.get(o + bb_pos) : 0; }
   public Table observation(Table obj) { int o = __offset(8); return o != 0 ? __union(obj, o) : null; }
 
@@ -43,7 +44,7 @@ public final class FOBS extends Table {
   @Override
   protected int keysCompare(Integer o1, Integer o2, ByteBuffer _bb) { return compareStrings(__offset(4, o1, _bb), __offset(4, o2, _bb), _bb); }
 
-  public static FOBS __lookup_by_key(int vectorLocation, String key, ByteBuffer bb) {
+  public static FOBS __lookup_by_key(FOBS obj, int vectorLocation, String key, ByteBuffer bb) {
     byte[] byteKey = key.getBytes(Table.UTF8_CHARSET.get());
     int span = bb.getInt(vectorLocation - 4);
     int start = 0;
@@ -58,7 +59,7 @@ public final class FOBS extends Table {
         start += middle;
         span -= middle;
       } else {
-        return new FOBS().__assign(tableOffset, bb);
+        return (obj == null ? new FOBS() : obj).__assign(tableOffset, bb);
       }
     }
     return null;

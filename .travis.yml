@@ -3,7 +3,7 @@ language: generic
 
 sudo: required
 
-after_success:
+script:
   - cd FBSSchemaGenerator
   - ./compile-all.sh
 

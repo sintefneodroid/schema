@@ -22,13 +22,19 @@ public struct FReactions : IFlatbufferObject
   public int ReactionsLength { get { int o = __p.__offset(4); return o != 0 ? __p.__vector_len(o) : 0; } }
   public FReaction? ReactionsByKey(string key) { int o = __p.__offset(4); return o != 0 ? FReaction.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
   public string ApiVersion { get { int o = __p.__offset(6); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetApiVersionBytes() { return __p.__vector_as_span(6); }
+#else
   public ArraySegment<byte>? GetApiVersionBytes() { return __p.__vector_as_arraysegment(6); }
+#endif
+  public byte[] GetApiVersionArray() { return __p.__vector_as_array<byte>(6); }
   public Neodroid.FBS.FSimulatorConfiguration? SimulatorConfiguration { get { int o = __p.__offset(8); return o != 0 ? (Neodroid.FBS.FSimulatorConfiguration?)(new Neodroid.FBS.FSimulatorConfiguration()).__assign(o + __p.bb_pos, __p.bb) : null; } }
   public bool Close { get { int o = __p.__offset(10); return o != 0 ? 0!=__p.bb.Get(o + __p.bb_pos) : (bool)false; } }
 
   public static void StartFReactions(FlatBufferBuilder builder) { builder.StartObject(4); }
   public static void AddReactions(FlatBufferBuilder builder, VectorOffset reactionsOffset) { builder.AddOffset(0, reactionsOffset.Value, 0); }
   public static VectorOffset CreateReactionsVector(FlatBufferBuilder builder, Offset<FReaction>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateReactionsVectorBlock(FlatBufferBuilder builder, Offset<FReaction>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartReactionsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddApiVersion(FlatBufferBuilder builder, StringOffset apiVersionOffset) { builder.AddOffset(1, apiVersionOffset.Value, 0); }
   public static void AddSimulatorConfiguration(FlatBufferBuilder builder, Offset<Neodroid.FBS.FSimulatorConfiguration> simulatorConfigurationOffset) { builder.AddStruct(2, simulatorConfigurationOffset.Value, 0); }
@@ -38,6 +44,7 @@ public struct FReactions : IFlatbufferObject
     return new Offset<FReactions>(o);
   }
   public static void FinishFReactionsBuffer(FlatBufferBuilder builder, Offset<FReactions> offset) { builder.Finish(offset.Value, "XREA"); }
+  public static void FinishSizePrefixedFReactionsBuffer(FlatBufferBuilder builder, Offset<FReactions> offset) { builder.FinishSizePrefixed(offset.Value, "XREA"); }
 };
 
 

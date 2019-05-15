@@ -12,15 +12,17 @@ public final class FStates extends Table {
   public static FStates getRootAsFStates(ByteBuffer _bb) { return getRootAsFStates(_bb, new FStates()); }
   public static FStates getRootAsFStates(ByteBuffer _bb, FStates obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
   public static boolean FStatesBufferHasIdentifier(ByteBuffer _bb) { return __has_identifier(_bb, "XSTA"); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FStates __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public FState states(int j) { return states(new FState(), j); }
   public FState states(FState obj, int j) { int o = __offset(4); return o != 0 ? obj.__assign(__indirect(__vector(o) + j * 4), bb) : null; }
   public int statesLength() { int o = __offset(4); return o != 0 ? __vector_len(o) : 0; }
-  public FState statesByKey(String key) { int o = __offset(4); return o != 0 ? FState.__lookup_by_key(__vector(o), key, bb) : null; }
+  public FState statesByKey(String key) { int o = __offset(4); return o != 0 ? FState.__lookup_by_key(null, __vector(o), key, bb) : null; }
+  public FState statesByKey(FState obj, String key) { int o = __offset(4); return o != 0 ? FState.__lookup_by_key(obj, __vector(o), key, bb) : null; }
   public String apiVersion() { int o = __offset(6); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer apiVersionAsByteBuffer() { return __vector_as_bytebuffer(6, 1); }
+  public ByteBuffer apiVersionInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 6, 1); }
   public Neodroid.FBS.FSimulatorConfiguration simulatorConfiguration() { return simulatorConfiguration(new Neodroid.FBS.FSimulatorConfiguration()); }
   public Neodroid.FBS.FSimulatorConfiguration simulatorConfiguration(Neodroid.FBS.FSimulatorConfiguration obj) { int o = __offset(8); return o != 0 ? obj.__assign(o + bb_pos, bb) : null; }
 
@@ -35,5 +37,6 @@ public final class FStates extends Table {
     return o;
   }
   public static void finishFStatesBuffer(FlatBufferBuilder builder, int offset) { builder.finish(offset, "XSTA"); }
+  public static void finishSizePrefixedFStatesBuffer(FlatBufferBuilder builder, int offset) { builder.finishSizePrefixed(offset, "XSTA"); }
 }
 

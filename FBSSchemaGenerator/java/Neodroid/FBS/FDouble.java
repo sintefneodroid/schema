@@ -11,7 +11,7 @@ import com.google.flatbuffers.*;
 public final class FDouble extends Table {
   public static FDouble getRootAsFDouble(ByteBuffer _bb) { return getRootAsFDouble(_bb, new FDouble()); }
   public static FDouble getRootAsFDouble(ByteBuffer _bb, FDouble obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FDouble __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public FVector2 vec2() { return vec2(new FVector2()); }

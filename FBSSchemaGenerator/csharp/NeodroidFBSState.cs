@@ -19,23 +19,43 @@ public struct FState : IFlatbufferObject
   public FState __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public string EnvironmentName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetEnvironmentNameBytes() { return __p.__vector_as_span(4); }
+#else
   public ArraySegment<byte>? GetEnvironmentNameBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public byte[] GetEnvironmentNameArray() { return __p.__vector_as_array<byte>(4); }
   public int FrameNumber { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
   public float Signal { get { int o = __p.__offset(8); return o != 0 ? __p.bb.GetFloat(o + __p.bb_pos) : (float)0.0f; } }
   public bool Terminated { get { int o = __p.__offset(10); return o != 0 ? 0!=__p.bb.Get(o + __p.bb_pos) : (bool)false; } }
   public string TerminationReason { get { int o = __p.__offset(12); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetTerminationReasonBytes() { return __p.__vector_as_span(12); }
+#else
   public ArraySegment<byte>? GetTerminationReasonBytes() { return __p.__vector_as_arraysegment(12); }
+#endif
+  public byte[] GetTerminationReasonArray() { return __p.__vector_as_array<byte>(12); }
   public float TotalEnergySpent { get { int o = __p.__offset(14); return o != 0 ? __p.bb.GetFloat(o + __p.bb_pos) : (float)0.0f; } }
   public FOBS? Observations(int j) { int o = __p.__offset(16); return o != 0 ? (FOBS?)(new FOBS()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int ObservationsLength { get { int o = __p.__offset(16); return o != 0 ? __p.__vector_len(o) : 0; } }
   public FOBS? ObservationsByKey(string key) { int o = __p.__offset(16); return o != 0 ? FOBS.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
   public float Observables(int j) { int o = __p.__offset(18); return o != 0 ? __p.bb.GetFloat(__p.__vector(o) + j * 4) : (float)0; }
   public int ObservablesLength { get { int o = __p.__offset(18); return o != 0 ? __p.__vector_len(o) : 0; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetObservablesBytes() { return __p.__vector_as_span(18); }
+#else
   public ArraySegment<byte>? GetObservablesBytes() { return __p.__vector_as_arraysegment(18); }
+#endif
+  public float[] GetObservablesArray() { return __p.__vector_as_array<float>(18); }
   public Neodroid.FBS.FUnobservables? Unobservables { get { int o = __p.__offset(20); return o != 0 ? (Neodroid.FBS.FUnobservables?)(new Neodroid.FBS.FUnobservables()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
   public FEnvironmentDescription? EnvironmentDescription { get { int o = __p.__offset(22); return o != 0 ? (FEnvironmentDescription?)(new FEnvironmentDescription()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
   public string SerialisedMessage { get { int o = __p.__offset(24); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetSerialisedMessageBytes() { return __p.__vector_as_span(24); }
+#else
   public ArraySegment<byte>? GetSerialisedMessageBytes() { return __p.__vector_as_arraysegment(24); }
+#endif
+  public byte[] GetSerialisedMessageArray() { return __p.__vector_as_array<byte>(24); }
 
   public static Offset<FState> CreateFState(FlatBufferBuilder builder,
       StringOffset environment_nameOffset = default(StringOffset),
@@ -73,9 +93,11 @@ public struct FState : IFlatbufferObject
   public static void AddTotalEnergySpent(FlatBufferBuilder builder, float totalEnergySpent) { builder.AddFloat(5, totalEnergySpent, 0.0f); }
   public static void AddObservations(FlatBufferBuilder builder, VectorOffset observationsOffset) { builder.AddOffset(6, observationsOffset.Value, 0); }
   public static VectorOffset CreateObservationsVector(FlatBufferBuilder builder, Offset<FOBS>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateObservationsVectorBlock(FlatBufferBuilder builder, Offset<FOBS>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartObservationsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddObservables(FlatBufferBuilder builder, VectorOffset observablesOffset) { builder.AddOffset(7, observablesOffset.Value, 0); }
   public static VectorOffset CreateObservablesVector(FlatBufferBuilder builder, float[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddFloat(data[i]); return builder.EndVector(); }
+  public static VectorOffset CreateObservablesVectorBlock(FlatBufferBuilder builder, float[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartObservablesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddUnobservables(FlatBufferBuilder builder, Offset<Neodroid.FBS.FUnobservables> unobservablesOffset) { builder.AddOffset(8, unobservablesOffset.Value, 0); }
   public static void AddEnvironmentDescription(FlatBufferBuilder builder, Offset<FEnvironmentDescription> environmentDescriptionOffset) { builder.AddOffset(9, environmentDescriptionOffset.Value, 0); }
@@ -86,6 +108,7 @@ public struct FState : IFlatbufferObject
     return new Offset<FState>(o);
   }
   public static void FinishFStateBuffer(FlatBufferBuilder builder, Offset<FState> offset) { builder.Finish(offset.Value, "STAT"); }
+  public static void FinishSizePrefixedFStateBuffer(FlatBufferBuilder builder, Offset<FState> offset) { builder.FinishSizePrefixed(offset.Value, "STAT"); }
 
   public static VectorOffset CreateSortedVectorOfFState(FlatBufferBuilder builder, Offset<FState>[] offsets) {
     Array.Sort(offsets, (Offset<FState> o1, Offset<FState> o2) => Table.CompareStrings(Table.__offset(4, o1.Value, builder.DataBuffer), Table.__offset(4, o2.Value, builder.DataBuffer), builder.DataBuffer));
@@ -124,7 +147,12 @@ public struct FObjective : IFlatbufferObject
   public FObjective __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public string ObjectiveName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetObjectiveNameBytes() { return __p.__vector_as_span(4); }
+#else
   public ArraySegment<byte>? GetObjectiveNameBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public byte[] GetObjectiveNameArray() { return __p.__vector_as_array<byte>(4); }
   public int MaxEpisodeLength { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
   public float SolvedThreshold { get { int o = __p.__offset(8); return o != 0 ? __p.bb.GetFloat(o + __p.bb_pos) : (float)0.0f; } }
 
@@ -185,12 +213,15 @@ public struct FEnvironmentDescription : IFlatbufferObject
   public static void AddObjective(FlatBufferBuilder builder, Offset<FObjective> objectiveOffset) { builder.AddOffset(0, objectiveOffset.Value, 0); }
   public static void AddAvailableObjectives(FlatBufferBuilder builder, VectorOffset availableObjectivesOffset) { builder.AddOffset(1, availableObjectivesOffset.Value, 0); }
   public static VectorOffset CreateAvailableObjectivesVector(FlatBufferBuilder builder, Offset<FObjective>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateAvailableObjectivesVectorBlock(FlatBufferBuilder builder, Offset<FObjective>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartAvailableObjectivesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddActors(FlatBufferBuilder builder, VectorOffset actorsOffset) { builder.AddOffset(2, actorsOffset.Value, 0); }
   public static VectorOffset CreateActorsVector(FlatBufferBuilder builder, Offset<FActor>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateActorsVectorBlock(FlatBufferBuilder builder, Offset<FActor>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartActorsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddConfigurables(FlatBufferBuilder builder, VectorOffset configurablesOffset) { builder.AddOffset(3, configurablesOffset.Value, 0); }
   public static VectorOffset CreateConfigurablesVector(FlatBufferBuilder builder, Offset<FConfigurable>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateConfigurablesVectorBlock(FlatBufferBuilder builder, Offset<FConfigurable>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartConfigurablesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static Offset<FEnvironmentDescription> EndFEnvironmentDescription(FlatBufferBuilder builder) {
     int o = builder.EndObject();
@@ -208,7 +239,12 @@ public struct FConfigurable : IFlatbufferObject
   public FConfigurable __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public string ConfigurableName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetConfigurableNameBytes() { return __p.__vector_as_span(4); }
+#else
   public ArraySegment<byte>? GetConfigurableNameBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public byte[] GetConfigurableNameArray() { return __p.__vector_as_array<byte>(4); }
   public FObservation ObservationType { get { int o = __p.__offset(6); return o != 0 ? (FObservation)__p.bb.Get(o + __p.bb_pos) : FObservation.NONE; } }
   public TTable? Observation<TTable>() where TTable : struct, IFlatbufferObject { int o = __p.__offset(8); return o != 0 ? (TTable?)__p.__union<TTable>(o) : null; }
 
@@ -270,18 +306,23 @@ public struct FActor : IFlatbufferObject
   public FActor __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public string ActorName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetActorNameBytes() { return __p.__vector_as_span(4); }
+#else
   public ArraySegment<byte>? GetActorNameBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public byte[] GetActorNameArray() { return __p.__vector_as_array<byte>(4); }
   public bool Alive { get { int o = __p.__offset(6); return o != 0 ? 0!=__p.bb.Get(o + __p.bb_pos) : (bool)false; } }
-  public FMotor? Motors(int j) { int o = __p.__offset(8); return o != 0 ? (FMotor?)(new FMotor()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
-  public int MotorsLength { get { int o = __p.__offset(8); return o != 0 ? __p.__vector_len(o) : 0; } }
-  public FMotor? MotorsByKey(string key) { int o = __p.__offset(8); return o != 0 ? FMotor.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
+  public FActuator? Actuators(int j) { int o = __p.__offset(8); return o != 0 ? (FActuator?)(new FActuator()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
+  public int ActuatorsLength { get { int o = __p.__offset(8); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public FActuator? ActuatorsByKey(string key) { int o = __p.__offset(8); return o != 0 ? FActuator.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
 
   public static Offset<FActor> CreateFActor(FlatBufferBuilder builder,
       StringOffset actor_nameOffset = default(StringOffset),
       bool alive = false,
-      VectorOffset motorsOffset = default(VectorOffset)) {
+      VectorOffset actuatorsOffset = default(VectorOffset)) {
     builder.StartObject(3);
-    FActor.AddMotors(builder, motorsOffset);
+    FActor.AddActuators(builder, actuatorsOffset);
     FActor.AddActorName(builder, actor_nameOffset);
     FActor.AddAlive(builder, alive);
     return FActor.EndFActor(builder);
@@ -290,9 +331,10 @@ public struct FActor : IFlatbufferObject
   public static void StartFActor(FlatBufferBuilder builder) { builder.StartObject(3); }
   public static void AddActorName(FlatBufferBuilder builder, StringOffset actorNameOffset) { builder.AddOffset(0, actorNameOffset.Value, 0); }
   public static void AddAlive(FlatBufferBuilder builder, bool alive) { builder.AddBool(1, alive, false); }
-  public static void AddMotors(FlatBufferBuilder builder, VectorOffset motorsOffset) { builder.AddOffset(2, motorsOffset.Value, 0); }
-  public static VectorOffset CreateMotorsVector(FlatBufferBuilder builder, Offset<FMotor>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
-  public static void StartMotorsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddActuators(FlatBufferBuilder builder, VectorOffset actuatorsOffset) { builder.AddOffset(2, actuatorsOffset.Value, 0); }
+  public static VectorOffset CreateActuatorsVector(FlatBufferBuilder builder, Offset<FActuator>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateActuatorsVectorBlock(FlatBufferBuilder builder, Offset<FActuator>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
+  public static void StartActuatorsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static Offset<FActor> EndFActor(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // actor_name
@@ -326,37 +368,42 @@ public struct FActor : IFlatbufferObject
   }
 };
 
-public struct FMotor : IFlatbufferObject
+public struct FActuator : IFlatbufferObject
 {
   private Table __p;
   public ByteBuffer ByteBuffer { get { return __p.bb; } }
-  public static FMotor GetRootAsFMotor(ByteBuffer _bb) { return GetRootAsFMotor(_bb, new FMotor()); }
-  public static FMotor GetRootAsFMotor(ByteBuffer _bb, FMotor obj) { return (obj.__assign(_bb.GetInt(_bb.Position) + _bb.Position, _bb)); }
+  public static FActuator GetRootAsFActuator(ByteBuffer _bb) { return GetRootAsFActuator(_bb, new FActuator()); }
+  public static FActuator GetRootAsFActuator(ByteBuffer _bb, FActuator obj) { return (obj.__assign(_bb.GetInt(_bb.Position) + _bb.Position, _bb)); }
   public void __init(int _i, ByteBuffer _bb) { __p.bb_pos = _i; __p.bb = _bb; }
-  public FMotor __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
+  public FActuator __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
-  public string MotorName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
-  public ArraySegment<byte>? GetMotorNameBytes() { return __p.__vector_as_arraysegment(4); }
+  public string ActuatorName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetActuatorNameBytes() { return __p.__vector_as_span(4); }
+#else
+  public ArraySegment<byte>? GetActuatorNameBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public byte[] GetActuatorNameArray() { return __p.__vector_as_array<byte>(4); }
   public Neodroid.FBS.FRange? ValidInput { get { int o = __p.__offset(6); return o != 0 ? (Neodroid.FBS.FRange?)(new Neodroid.FBS.FRange()).__assign(o + __p.bb_pos, __p.bb) : null; } }
   public float EnergySpentSinceReset { get { int o = __p.__offset(8); return o != 0 ? __p.bb.GetFloat(o + __p.bb_pos) : (float)0.0f; } }
 
-  public static void StartFMotor(FlatBufferBuilder builder) { builder.StartObject(3); }
-  public static void AddMotorName(FlatBufferBuilder builder, StringOffset motorNameOffset) { builder.AddOffset(0, motorNameOffset.Value, 0); }
+  public static void StartFActuator(FlatBufferBuilder builder) { builder.StartObject(3); }
+  public static void AddActuatorName(FlatBufferBuilder builder, StringOffset actuatorNameOffset) { builder.AddOffset(0, actuatorNameOffset.Value, 0); }
   public static void AddValidInput(FlatBufferBuilder builder, Offset<Neodroid.FBS.FRange> validInputOffset) { builder.AddStruct(1, validInputOffset.Value, 0); }
   public static void AddEnergySpentSinceReset(FlatBufferBuilder builder, float energySpentSinceReset) { builder.AddFloat(2, energySpentSinceReset, 0.0f); }
-  public static Offset<FMotor> EndFMotor(FlatBufferBuilder builder) {
+  public static Offset<FActuator> EndFActuator(FlatBufferBuilder builder) {
     int o = builder.EndObject();
-    builder.Required(o, 4);  // motor_name
+    builder.Required(o, 4);  // actuator_name
     builder.Required(o, 6);  // valid_input
-    return new Offset<FMotor>(o);
+    return new Offset<FActuator>(o);
   }
 
-  public static VectorOffset CreateSortedVectorOfFMotor(FlatBufferBuilder builder, Offset<FMotor>[] offsets) {
-    Array.Sort(offsets, (Offset<FMotor> o1, Offset<FMotor> o2) => Table.CompareStrings(Table.__offset(4, o1.Value, builder.DataBuffer), Table.__offset(4, o2.Value, builder.DataBuffer), builder.DataBuffer));
+  public static VectorOffset CreateSortedVectorOfFActuator(FlatBufferBuilder builder, Offset<FActuator>[] offsets) {
+    Array.Sort(offsets, (Offset<FActuator> o1, Offset<FActuator> o2) => Table.CompareStrings(Table.__offset(4, o1.Value, builder.DataBuffer), Table.__offset(4, o2.Value, builder.DataBuffer), builder.DataBuffer));
     return builder.CreateVectorOfTables(offsets);
   }
 
-  public static FMotor? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
+  public static FActuator? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
     byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
@@ -371,7 +418,7 @@ public struct FMotor : IFlatbufferObject
         start += middle;
         span -= middle;
       } else {
-        return new FMotor().__assign(tableOffset, bb);
+        return new FActuator().__assign(tableOffset, bb);
       }
     }
     return null;
@@ -388,7 +435,12 @@ public struct FOBS : IFlatbufferObject
   public FOBS __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public string ObservationName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetObservationNameBytes() { return __p.__vector_as_span(4); }
+#else
   public ArraySegment<byte>? GetObservationNameBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public byte[] GetObservationNameArray() { return __p.__vector_as_array<byte>(4); }
   public FObservation ObservationType { get { int o = __p.__offset(6); return o != 0 ? (FObservation)__p.bb.Get(o + __p.bb_pos) : FObservation.NONE; } }
   public TTable? Observation<TTable>() where TTable : struct, IFlatbufferObject { int o = __p.__offset(8); return o != 0 ? (TTable?)__p.__union<TTable>(o) : null; }
 

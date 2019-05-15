@@ -11,23 +11,25 @@ import com.google.flatbuffers.*;
 public final class FActor extends Table {
   public static FActor getRootAsFActor(ByteBuffer _bb) { return getRootAsFActor(_bb, new FActor()); }
   public static FActor getRootAsFActor(ByteBuffer _bb, FActor obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FActor __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public String actorName() { int o = __offset(4); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer actorNameAsByteBuffer() { return __vector_as_bytebuffer(4, 1); }
+  public ByteBuffer actorNameInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 1); }
   public boolean alive() { int o = __offset(6); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
-  public FMotor motors(int j) { return motors(new FMotor(), j); }
-  public FMotor motors(FMotor obj, int j) { int o = __offset(8); return o != 0 ? obj.__assign(__indirect(__vector(o) + j * 4), bb) : null; }
-  public int motorsLength() { int o = __offset(8); return o != 0 ? __vector_len(o) : 0; }
-  public FMotor motorsByKey(String key) { int o = __offset(8); return o != 0 ? FMotor.__lookup_by_key(__vector(o), key, bb) : null; }
+  public FActuator actuators(int j) { return actuators(new FActuator(), j); }
+  public FActuator actuators(FActuator obj, int j) { int o = __offset(8); return o != 0 ? obj.__assign(__indirect(__vector(o) + j * 4), bb) : null; }
+  public int actuatorsLength() { int o = __offset(8); return o != 0 ? __vector_len(o) : 0; }
+  public FActuator actuatorsByKey(String key) { int o = __offset(8); return o != 0 ? FActuator.__lookup_by_key(null, __vector(o), key, bb) : null; }
+  public FActuator actuatorsByKey(FActuator obj, String key) { int o = __offset(8); return o != 0 ? FActuator.__lookup_by_key(obj, __vector(o), key, bb) : null; }
 
   public static int createFActor(FlatBufferBuilder builder,
       int actor_nameOffset,
       boolean alive,
-      int motorsOffset) {
+      int actuatorsOffset) {
     builder.startObject(3);
-    FActor.addMotors(builder, motorsOffset);
+    FActor.addActuators(builder, actuatorsOffset);
     FActor.addActorName(builder, actor_nameOffset);
     FActor.addAlive(builder, alive);
     return FActor.endFActor(builder);
@@ -36,9 +38,9 @@ public final class FActor extends Table {
   public static void startFActor(FlatBufferBuilder builder) { builder.startObject(3); }
   public static void addActorName(FlatBufferBuilder builder, int actorNameOffset) { builder.addOffset(0, actorNameOffset, 0); }
   public static void addAlive(FlatBufferBuilder builder, boolean alive) { builder.addBoolean(1, alive, false); }
-  public static void addMotors(FlatBufferBuilder builder, int motorsOffset) { builder.addOffset(2, motorsOffset, 0); }
-  public static int createMotorsVector(FlatBufferBuilder builder, int[] data) { builder.startVector(4, data.length, 4); for (int i = data.length - 1; i >= 0; i--) builder.addOffset(data[i]); return builder.endVector(); }
-  public static void startMotorsVector(FlatBufferBuilder builder, int numElems) { builder.startVector(4, numElems, 4); }
+  public static void addActuators(FlatBufferBuilder builder, int actuatorsOffset) { builder.addOffset(2, actuatorsOffset, 0); }
+  public static int createActuatorsVector(FlatBufferBuilder builder, int[] data) { builder.startVector(4, data.length, 4); for (int i = data.length - 1; i >= 0; i--) builder.addOffset(data[i]); return builder.endVector(); }
+  public static void startActuatorsVector(FlatBufferBuilder builder, int numElems) { builder.startVector(4, numElems, 4); }
   public static int endFActor(FlatBufferBuilder builder) {
     int o = builder.endObject();
     builder.required(o, 4);  // actor_name
@@ -48,7 +50,7 @@ public final class FActor extends Table {
   @Override
   protected int keysCompare(Integer o1, Integer o2, ByteBuffer _bb) { return compareStrings(__offset(4, o1, _bb), __offset(4, o2, _bb), _bb); }
 
-  public static FActor __lookup_by_key(int vectorLocation, String key, ByteBuffer bb) {
+  public static FActor __lookup_by_key(FActor obj, int vectorLocation, String key, ByteBuffer bb) {
     byte[] byteKey = key.getBytes(Table.UTF8_CHARSET.get());
     int span = bb.getInt(vectorLocation - 4);
     int start = 0;
@@ -63,7 +65,7 @@ public final class FActor extends Table {
         start += middle;
         span -= middle;
       } else {
-        return new FActor().__assign(tableOffset, bb);
+        return (obj == null ? new FActor() : obj).__assign(tableOffset, bb);
       }
     }
     return null;

@@ -11,11 +11,12 @@ import com.google.flatbuffers.*;
 public final class FObjective extends Table {
   public static FObjective getRootAsFObjective(ByteBuffer _bb) { return getRootAsFObjective(_bb, new FObjective()); }
   public static FObjective getRootAsFObjective(ByteBuffer _bb, FObjective obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FObjective __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public String objectiveName() { int o = __offset(4); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer objectiveNameAsByteBuffer() { return __vector_as_bytebuffer(4, 1); }
+  public ByteBuffer objectiveNameInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 1); }
   public int maxEpisodeLength() { int o = __offset(6); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
   public float solvedThreshold() { int o = __offset(8); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
 

@@ -11,7 +11,7 @@ import com.google.flatbuffers.*;
 public final class FEnvironmentDescription extends Table {
   public static FEnvironmentDescription getRootAsFEnvironmentDescription(ByteBuffer _bb) { return getRootAsFEnvironmentDescription(_bb, new FEnvironmentDescription()); }
   public static FEnvironmentDescription getRootAsFEnvironmentDescription(ByteBuffer _bb, FEnvironmentDescription obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FEnvironmentDescription __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public FObjective objective() { return objective(new FObjective()); }
@@ -22,11 +22,13 @@ public final class FEnvironmentDescription extends Table {
   public FActor actors(int j) { return actors(new FActor(), j); }
   public FActor actors(FActor obj, int j) { int o = __offset(8); return o != 0 ? obj.__assign(__indirect(__vector(o) + j * 4), bb) : null; }
   public int actorsLength() { int o = __offset(8); return o != 0 ? __vector_len(o) : 0; }
-  public FActor actorsByKey(String key) { int o = __offset(8); return o != 0 ? FActor.__lookup_by_key(__vector(o), key, bb) : null; }
+  public FActor actorsByKey(String key) { int o = __offset(8); return o != 0 ? FActor.__lookup_by_key(null, __vector(o), key, bb) : null; }
+  public FActor actorsByKey(FActor obj, String key) { int o = __offset(8); return o != 0 ? FActor.__lookup_by_key(obj, __vector(o), key, bb) : null; }
   public FConfigurable configurables(int j) { return configurables(new FConfigurable(), j); }
   public FConfigurable configurables(FConfigurable obj, int j) { int o = __offset(10); return o != 0 ? obj.__assign(__indirect(__vector(o) + j * 4), bb) : null; }
   public int configurablesLength() { int o = __offset(10); return o != 0 ? __vector_len(o) : 0; }
-  public FConfigurable configurablesByKey(String key) { int o = __offset(10); return o != 0 ? FConfigurable.__lookup_by_key(__vector(o), key, bb) : null; }
+  public FConfigurable configurablesByKey(String key) { int o = __offset(10); return o != 0 ? FConfigurable.__lookup_by_key(null, __vector(o), key, bb) : null; }
+  public FConfigurable configurablesByKey(FConfigurable obj, String key) { int o = __offset(10); return o != 0 ? FConfigurable.__lookup_by_key(obj, __vector(o), key, bb) : null; }
 
   public static int createFEnvironmentDescription(FlatBufferBuilder builder,
       int objectiveOffset,

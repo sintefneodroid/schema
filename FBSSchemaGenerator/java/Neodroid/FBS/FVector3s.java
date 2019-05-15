@@ -11,7 +11,7 @@ import com.google.flatbuffers.*;
 public final class FVector3s extends Table {
   public static FVector3s getRootAsFVector3s(ByteBuffer _bb) { return getRootAsFVector3s(_bb, new FVector3s()); }
   public static FVector3s getRootAsFVector3s(ByteBuffer _bb, FVector3s obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FVector3s __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public FVector3 points(int j) { return points(new FVector3(), j); }

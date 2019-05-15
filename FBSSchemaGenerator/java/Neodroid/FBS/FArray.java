@@ -11,12 +11,13 @@ import com.google.flatbuffers.*;
 public final class FArray extends Table {
   public static FArray getRootAsFArray(ByteBuffer _bb) { return getRootAsFArray(_bb, new FArray()); }
   public static FArray getRootAsFArray(ByteBuffer _bb, FArray obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FArray __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public float array(int j) { int o = __offset(4); return o != 0 ? bb.getFloat(__vector(o) + j * 4) : 0; }
   public int arrayLength() { int o = __offset(4); return o != 0 ? __vector_len(o) : 0; }
   public ByteBuffer arrayAsByteBuffer() { return __vector_as_bytebuffer(4, 4); }
+  public ByteBuffer arrayInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 4); }
   public FRange ranges(int j) { return ranges(new FRange(), j); }
   public FRange ranges(FRange obj, int j) { int o = __offset(6); return o != 0 ? obj.__assign(__vector(o) + j * 12, bb) : null; }
   public int rangesLength() { int o = __offset(6); return o != 0 ? __vector_len(o) : 0; }

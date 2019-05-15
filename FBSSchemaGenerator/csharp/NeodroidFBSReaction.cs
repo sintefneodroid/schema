@@ -30,7 +30,12 @@ public struct FReaction : IFlatbufferObject
   public FReaction __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public string EnvironmentName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetEnvironmentNameBytes() { return __p.__vector_as_span(4); }
+#else
   public ArraySegment<byte>? GetEnvironmentNameBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public byte[] GetEnvironmentNameArray() { return __p.__vector_as_array<byte>(4); }
   public FReactionParameters? Parameters { get { int o = __p.__offset(6); return o != 0 ? (FReactionParameters?)(new FReactionParameters()).__assign(o + __p.bb_pos, __p.bb) : null; } }
   public FMotion? Motions(int j) { int o = __p.__offset(8); return o != 0 ? (FMotion?)(new FMotion()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int MotionsLength { get { int o = __p.__offset(8); return o != 0 ? __p.__vector_len(o) : 0; } }
@@ -43,20 +48,28 @@ public struct FReaction : IFlatbufferObject
   public int ConfigurationsLength { get { int o = __p.__offset(14); return o != 0 ? __p.__vector_len(o) : 0; } }
   public FConfiguration? ConfigurationsByKey(string key) { int o = __p.__offset(14); return o != 0 ? FConfiguration.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
   public string SerialisedMessage { get { int o = __p.__offset(16); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetSerialisedMessageBytes() { return __p.__vector_as_span(16); }
+#else
   public ArraySegment<byte>? GetSerialisedMessageBytes() { return __p.__vector_as_arraysegment(16); }
+#endif
+  public byte[] GetSerialisedMessageArray() { return __p.__vector_as_array<byte>(16); }
 
   public static void StartFReaction(FlatBufferBuilder builder) { builder.StartObject(7); }
   public static void AddEnvironmentName(FlatBufferBuilder builder, StringOffset environmentNameOffset) { builder.AddOffset(0, environmentNameOffset.Value, 0); }
   public static void AddParameters(FlatBufferBuilder builder, Offset<FReactionParameters> parametersOffset) { builder.AddStruct(1, parametersOffset.Value, 0); }
   public static void AddMotions(FlatBufferBuilder builder, VectorOffset motionsOffset) { builder.AddOffset(2, motionsOffset.Value, 0); }
   public static VectorOffset CreateMotionsVector(FlatBufferBuilder builder, Offset<FMotion>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateMotionsVectorBlock(FlatBufferBuilder builder, Offset<FMotion>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartMotionsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddDisplayables(FlatBufferBuilder builder, VectorOffset displayablesOffset) { builder.AddOffset(3, displayablesOffset.Value, 0); }
   public static VectorOffset CreateDisplayablesVector(FlatBufferBuilder builder, Offset<FDisplayable>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateDisplayablesVectorBlock(FlatBufferBuilder builder, Offset<FDisplayable>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartDisplayablesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddUnobservables(FlatBufferBuilder builder, Offset<Neodroid.FBS.FUnobservables> unobservablesOffset) { builder.AddOffset(4, unobservablesOffset.Value, 0); }
   public static void AddConfigurations(FlatBufferBuilder builder, VectorOffset configurationsOffset) { builder.AddOffset(5, configurationsOffset.Value, 0); }
   public static VectorOffset CreateConfigurationsVector(FlatBufferBuilder builder, Offset<FConfiguration>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateConfigurationsVectorBlock(FlatBufferBuilder builder, Offset<FConfiguration>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartConfigurationsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddSerialisedMessage(FlatBufferBuilder builder, StringOffset serialisedMessageOffset) { builder.AddOffset(6, serialisedMessageOffset.Value, 0); }
   public static Offset<FReaction> EndFReaction(FlatBufferBuilder builder) {
@@ -66,6 +79,7 @@ public struct FReaction : IFlatbufferObject
     return new Offset<FReaction>(o);
   }
   public static void FinishFReactionBuffer(FlatBufferBuilder builder, Offset<FReaction> offset) { builder.Finish(offset.Value, "REAC"); }
+  public static void FinishSizePrefixedFReactionBuffer(FlatBufferBuilder builder, Offset<FReaction> offset) { builder.FinishSizePrefixed(offset.Value, "REAC"); }
 
   public static VectorOffset CreateSortedVectorOfFReaction(FlatBufferBuilder builder, Offset<FReaction>[] offsets) {
     Array.Sort(offsets, (Offset<FReaction> o1, Offset<FReaction> o2) => Table.CompareStrings(Table.__offset(4, o1.Value, builder.DataBuffer), Table.__offset(4, o2.Value, builder.DataBuffer), builder.DataBuffer));
@@ -130,30 +144,40 @@ public struct FMotion : IFlatbufferObject
   public FMotion __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public string ActorName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetActorNameBytes() { return __p.__vector_as_span(4); }
+#else
   public ArraySegment<byte>? GetActorNameBytes() { return __p.__vector_as_arraysegment(4); }
-  public string MotorName { get { int o = __p.__offset(6); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
-  public ArraySegment<byte>? GetMotorNameBytes() { return __p.__vector_as_arraysegment(6); }
+#endif
+  public byte[] GetActorNameArray() { return __p.__vector_as_array<byte>(4); }
+  public string ActuatorName { get { int o = __p.__offset(6); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetActuatorNameBytes() { return __p.__vector_as_span(6); }
+#else
+  public ArraySegment<byte>? GetActuatorNameBytes() { return __p.__vector_as_arraysegment(6); }
+#endif
+  public byte[] GetActuatorNameArray() { return __p.__vector_as_array<byte>(6); }
   public double Strength { get { int o = __p.__offset(8); return o != 0 ? __p.bb.GetDouble(o + __p.bb_pos) : (double)0.0; } }
 
   public static Offset<FMotion> CreateFMotion(FlatBufferBuilder builder,
       StringOffset actor_nameOffset = default(StringOffset),
-      StringOffset motor_nameOffset = default(StringOffset),
+      StringOffset actuator_nameOffset = default(StringOffset),
       double strength = 0.0) {
     builder.StartObject(3);
     FMotion.AddStrength(builder, strength);
-    FMotion.AddMotorName(builder, motor_nameOffset);
+    FMotion.AddActuatorName(builder, actuator_nameOffset);
     FMotion.AddActorName(builder, actor_nameOffset);
     return FMotion.EndFMotion(builder);
   }
 
   public static void StartFMotion(FlatBufferBuilder builder) { builder.StartObject(3); }
   public static void AddActorName(FlatBufferBuilder builder, StringOffset actorNameOffset) { builder.AddOffset(0, actorNameOffset.Value, 0); }
-  public static void AddMotorName(FlatBufferBuilder builder, StringOffset motorNameOffset) { builder.AddOffset(1, motorNameOffset.Value, 0); }
+  public static void AddActuatorName(FlatBufferBuilder builder, StringOffset actuatorNameOffset) { builder.AddOffset(1, actuatorNameOffset.Value, 0); }
   public static void AddStrength(FlatBufferBuilder builder, double strength) { builder.AddDouble(2, strength, 0.0); }
   public static Offset<FMotion> EndFMotion(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // actor_name
-    builder.Required(o, 6);  // motor_name
+    builder.Required(o, 6);  // actuator_name
     return new Offset<FMotion>(o);
   }
 
@@ -194,7 +218,12 @@ public struct FConfiguration : IFlatbufferObject
   public FConfiguration __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public string ConfigurableName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetConfigurableNameBytes() { return __p.__vector_as_span(4); }
+#else
   public ArraySegment<byte>? GetConfigurableNameBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public byte[] GetConfigurableNameArray() { return __p.__vector_as_array<byte>(4); }
   public double ConfigurableValue { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetDouble(o + __p.bb_pos) : (double)0.0; } }
 
   public static Offset<FConfiguration> CreateFConfiguration(FlatBufferBuilder builder,
@@ -252,7 +281,12 @@ public struct FDisplayable : IFlatbufferObject
   public FDisplayable __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public string DisplayableName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetDisplayableNameBytes() { return __p.__vector_as_span(4); }
+#else
   public ArraySegment<byte>? GetDisplayableNameBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public byte[] GetDisplayableNameArray() { return __p.__vector_as_array<byte>(4); }
   public FDisplayableValue DisplayableValueType { get { int o = __p.__offset(6); return o != 0 ? (FDisplayableValue)__p.bb.Get(o + __p.bb_pos) : FDisplayableValue.NONE; } }
   public TTable? DisplayableValue<TTable>() where TTable : struct, IFlatbufferObject { int o = __p.__offset(8); return o != 0 ? (TTable?)__p.__union<TTable>(o) : null; }
 

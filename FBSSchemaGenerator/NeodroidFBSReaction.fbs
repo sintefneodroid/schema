@@ -31,7 +31,7 @@ struct FReactionParameters{
 
 table FMotion {
   actor_name:string (key);
-  motor_name:string (required);
+  actuator_name:string (required);
   strength:double;
 }
 

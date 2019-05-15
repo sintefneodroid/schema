@@ -43,11 +43,11 @@ table FConfigurable {
 table FActor {
   actor_name:string (key);
   alive:bool;
-  motors:[FMotor];
+  actuators:[FActuator];
 }
 
-table FMotor{
-  motor_name:string (key);
+table FActuator{
+  actuator_name:string (key);
   valid_input:FRange (required);
   energy_spent_since_reset: float;
 }

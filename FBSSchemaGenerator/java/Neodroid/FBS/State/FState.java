@@ -12,30 +12,35 @@ public final class FState extends Table {
   public static FState getRootAsFState(ByteBuffer _bb) { return getRootAsFState(_bb, new FState()); }
   public static FState getRootAsFState(ByteBuffer _bb, FState obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
   public static boolean FStateBufferHasIdentifier(ByteBuffer _bb) { return __has_identifier(_bb, "STAT"); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FState __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public String environmentName() { int o = __offset(4); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer environmentNameAsByteBuffer() { return __vector_as_bytebuffer(4, 1); }
+  public ByteBuffer environmentNameInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 1); }
   public int frameNumber() { int o = __offset(6); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
   public float signal() { int o = __offset(8); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
   public boolean terminated() { int o = __offset(10); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
   public String terminationReason() { int o = __offset(12); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer terminationReasonAsByteBuffer() { return __vector_as_bytebuffer(12, 1); }
+  public ByteBuffer terminationReasonInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 12, 1); }
   public float totalEnergySpent() { int o = __offset(14); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
   public FOBS observations(int j) { return observations(new FOBS(), j); }
   public FOBS observations(FOBS obj, int j) { int o = __offset(16); return o != 0 ? obj.__assign(__indirect(__vector(o) + j * 4), bb) : null; }
   public int observationsLength() { int o = __offset(16); return o != 0 ? __vector_len(o) : 0; }
-  public FOBS observationsByKey(String key) { int o = __offset(16); return o != 0 ? FOBS.__lookup_by_key(__vector(o), key, bb) : null; }
+  public FOBS observationsByKey(String key) { int o = __offset(16); return o != 0 ? FOBS.__lookup_by_key(null, __vector(o), key, bb) : null; }
+  public FOBS observationsByKey(FOBS obj, String key) { int o = __offset(16); return o != 0 ? FOBS.__lookup_by_key(obj, __vector(o), key, bb) : null; }
   public float observables(int j) { int o = __offset(18); return o != 0 ? bb.getFloat(__vector(o) + j * 4) : 0; }
   public int observablesLength() { int o = __offset(18); return o != 0 ? __vector_len(o) : 0; }
   public ByteBuffer observablesAsByteBuffer() { return __vector_as_bytebuffer(18, 4); }
+  public ByteBuffer observablesInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 18, 4); }
   public Neodroid.FBS.FUnobservables unobservables() { return unobservables(new Neodroid.FBS.FUnobservables()); }
   public Neodroid.FBS.FUnobservables unobservables(Neodroid.FBS.FUnobservables obj) { int o = __offset(20); return o != 0 ? obj.__assign(__indirect(o + bb_pos), bb) : null; }
   public FEnvironmentDescription environmentDescription() { return environmentDescription(new FEnvironmentDescription()); }
   public FEnvironmentDescription environmentDescription(FEnvironmentDescription obj) { int o = __offset(22); return o != 0 ? obj.__assign(__indirect(o + bb_pos), bb) : null; }
   public String serialisedMessage() { int o = __offset(24); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer serialisedMessageAsByteBuffer() { return __vector_as_bytebuffer(24, 1); }
+  public ByteBuffer serialisedMessageInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 24, 1); }
 
   public static int createFState(FlatBufferBuilder builder,
       int environment_nameOffset,
@@ -86,11 +91,12 @@ public final class FState extends Table {
     return o;
   }
   public static void finishFStateBuffer(FlatBufferBuilder builder, int offset) { builder.finish(offset, "STAT"); }
+  public static void finishSizePrefixedFStateBuffer(FlatBufferBuilder builder, int offset) { builder.finishSizePrefixed(offset, "STAT"); }
 
   @Override
   protected int keysCompare(Integer o1, Integer o2, ByteBuffer _bb) { return compareStrings(__offset(4, o1, _bb), __offset(4, o2, _bb), _bb); }
 
-  public static FState __lookup_by_key(int vectorLocation, String key, ByteBuffer bb) {
+  public static FState __lookup_by_key(FState obj, int vectorLocation, String key, ByteBuffer bb) {
     byte[] byteKey = key.getBytes(Table.UTF8_CHARSET.get());
     int span = bb.getInt(vectorLocation - 4);
     int start = 0;
@@ -105,7 +111,7 @@ public final class FState extends Table {
         start += middle;
         span -= middle;
       } else {
-        return new FState().__assign(tableOffset, bb);
+        return (obj == null ? new FState() : obj).__assign(tableOffset, bb);
       }
     }
     return null;

@@ -11,11 +11,12 @@ import com.google.flatbuffers.*;
 public final class FConfiguration extends Table {
   public static FConfiguration getRootAsFConfiguration(ByteBuffer _bb) { return getRootAsFConfiguration(_bb, new FConfiguration()); }
   public static FConfiguration getRootAsFConfiguration(ByteBuffer _bb, FConfiguration obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FConfiguration __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public String configurableName() { int o = __offset(4); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer configurableNameAsByteBuffer() { return __vector_as_bytebuffer(4, 1); }
+  public ByteBuffer configurableNameInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 1); }
   public double configurableValue() { int o = __offset(6); return o != 0 ? bb.getDouble(o + bb_pos) : 0.0; }
 
   public static int createFConfiguration(FlatBufferBuilder builder,
@@ -39,7 +40,7 @@ public final class FConfiguration extends Table {
   @Override
   protected int keysCompare(Integer o1, Integer o2, ByteBuffer _bb) { return compareStrings(__offset(4, o1, _bb), __offset(4, o2, _bb), _bb); }
 
-  public static FConfiguration __lookup_by_key(int vectorLocation, String key, ByteBuffer bb) {
+  public static FConfiguration __lookup_by_key(FConfiguration obj, int vectorLocation, String key, ByteBuffer bb) {
     byte[] byteKey = key.getBytes(Table.UTF8_CHARSET.get());
     int span = bb.getInt(vectorLocation - 4);
     int start = 0;
@@ -54,7 +55,7 @@ public final class FConfiguration extends Table {
         start += middle;
         span -= middle;
       } else {
-        return new FConfiguration().__assign(tableOffset, bb);
+        return (obj == null ? new FConfiguration() : obj).__assign(tableOffset, bb);
       }
     }
     return null;

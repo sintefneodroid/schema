@@ -11,7 +11,7 @@ import com.google.flatbuffers.*;
 public final class FRB extends Table {
   public static FRB getRootAsFRB(ByteBuffer _bb) { return getRootAsFRB(_bb, new FRB()); }
   public static FRB getRootAsFRB(ByteBuffer _bb, FRB obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FRB __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public FBody body() { return body(new FBody()); }

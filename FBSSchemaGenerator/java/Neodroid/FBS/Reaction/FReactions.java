@@ -12,15 +12,17 @@ public final class FReactions extends Table {
   public static FReactions getRootAsFReactions(ByteBuffer _bb) { return getRootAsFReactions(_bb, new FReactions()); }
   public static FReactions getRootAsFReactions(ByteBuffer _bb, FReactions obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
   public static boolean FReactionsBufferHasIdentifier(ByteBuffer _bb) { return __has_identifier(_bb, "XREA"); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FReactions __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public FReaction reactions(int j) { return reactions(new FReaction(), j); }
   public FReaction reactions(FReaction obj, int j) { int o = __offset(4); return o != 0 ? obj.__assign(__indirect(__vector(o) + j * 4), bb) : null; }
   public int reactionsLength() { int o = __offset(4); return o != 0 ? __vector_len(o) : 0; }
-  public FReaction reactionsByKey(String key) { int o = __offset(4); return o != 0 ? FReaction.__lookup_by_key(__vector(o), key, bb) : null; }
+  public FReaction reactionsByKey(String key) { int o = __offset(4); return o != 0 ? FReaction.__lookup_by_key(null, __vector(o), key, bb) : null; }
+  public FReaction reactionsByKey(FReaction obj, String key) { int o = __offset(4); return o != 0 ? FReaction.__lookup_by_key(obj, __vector(o), key, bb) : null; }
   public String apiVersion() { int o = __offset(6); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer apiVersionAsByteBuffer() { return __vector_as_bytebuffer(6, 1); }
+  public ByteBuffer apiVersionInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 6, 1); }
   public Neodroid.FBS.FSimulatorConfiguration simulatorConfiguration() { return simulatorConfiguration(new Neodroid.FBS.FSimulatorConfiguration()); }
   public Neodroid.FBS.FSimulatorConfiguration simulatorConfiguration(Neodroid.FBS.FSimulatorConfiguration obj) { int o = __offset(8); return o != 0 ? obj.__assign(o + bb_pos, bb) : null; }
   public boolean close() { int o = __offset(10); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
@@ -37,5 +39,6 @@ public final class FReactions extends Table {
     return o;
   }
   public static void finishFReactionsBuffer(FlatBufferBuilder builder, int offset) { builder.finish(offset, "XREA"); }
+  public static void finishSizePrefixedFReactionsBuffer(FlatBufferBuilder builder, int offset) { builder.finishSizePrefixed(offset, "XREA"); }
 }
 

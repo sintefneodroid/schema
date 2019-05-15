@@ -11,12 +11,13 @@ import com.google.flatbuffers.*;
 public final class FValuedVector3s extends Table {
   public static FValuedVector3s getRootAsFValuedVector3s(ByteBuffer _bb) { return getRootAsFValuedVector3s(_bb, new FValuedVector3s()); }
   public static FValuedVector3s getRootAsFValuedVector3s(ByteBuffer _bb, FValuedVector3s obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
+  public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; vtable_start = bb_pos - bb.getInt(bb_pos); vtable_size = bb.getShort(vtable_start); }
   public FValuedVector3s __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
   public double vals(int j) { int o = __offset(4); return o != 0 ? bb.getDouble(__vector(o) + j * 8) : 0; }
   public int valsLength() { int o = __offset(4); return o != 0 ? __vector_len(o) : 0; }
   public ByteBuffer valsAsByteBuffer() { return __vector_as_bytebuffer(4, 8); }
+  public ByteBuffer valsInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 8); }
   public FVector3 points(int j) { return points(new FVector3(), j); }
   public FVector3 points(FVector3 obj, int j) { int o = __offset(6); return o != 0 ? obj.__assign(__vector(o) + j * 24, bb) : null; }
   public int pointsLength() { int o = __offset(6); return o != 0 ? __vector_len(o) : 0; }
