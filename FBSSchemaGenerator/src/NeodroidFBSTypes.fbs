@@ -50,7 +50,7 @@ table FString {
   str:string (required);
 }
 
-enum FByteDataType:ubyte { PNG, JPEG, Other }
+enum FByteDataType:ubyte { UINT8, FLOAT16, FLOAT32,PNG, JPEG, Other }
 
 table FByteArray {
   bytes:[ubyte] (required);

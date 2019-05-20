@@ -45,6 +45,13 @@ struct FRange{
   min_value:float;
 }
 
+enum FSimulationType:ubyte {
+  Independent,
+  FrameDependent,
+  PhysicsDependent,
+  EventDependent
+}
+
 struct FSimulatorConfiguration {
   width:int;
   height:int;
@@ -52,18 +59,14 @@ struct FSimulatorConfiguration {
   quality_level:int;
   time_scale:float;
   target_frame_rate:float;
-  wait_every:int; //Use FWaitOn type instead
+  simulation_type:FSimulationType;
   frame_skips:int;
   reset_iterations:int;
   num_of_environments:int;
-  do_serialise_indidual_sensors:bool;
+  do_serialise_individual_sensors:bool;
   do_serialise_unobservables:bool;
 }
 
-/*enum FWaitOn:ubyte { // Not used yet due to flatbuffer enums being non-scalars
-  Never,
-  Update,
-  FixedUpdate
-}*/
+
 
 file_identifier "SHAR";

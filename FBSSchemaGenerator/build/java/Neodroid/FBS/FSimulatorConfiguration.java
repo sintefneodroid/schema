@@ -18,22 +18,23 @@ public final class FSimulatorConfiguration extends Struct {
   public int qualityLevel() { return bb.getInt(bb_pos + 12); }
   public float timeScale() { return bb.getFloat(bb_pos + 16); }
   public float targetFrameRate() { return bb.getFloat(bb_pos + 20); }
-  public int waitEvery() { return bb.getInt(bb_pos + 24); }
+  public int simulationType() { return bb.get(bb_pos + 24) & 0xFF; }
   public int frameSkips() { return bb.getInt(bb_pos + 28); }
   public int resetIterations() { return bb.getInt(bb_pos + 32); }
   public int numOfEnvironments() { return bb.getInt(bb_pos + 36); }
-  public boolean doSerialiseIndidualSensors() { return 0!=bb.get(bb_pos + 40); }
+  public boolean doSerialiseIndividualSensors() { return 0!=bb.get(bb_pos + 40); }
   public boolean doSerialiseUnobservables() { return 0!=bb.get(bb_pos + 41); }
 
-  public static int createFSimulatorConfiguration(FlatBufferBuilder builder, int width, int height, boolean fullScreen, int qualityLevel, float timeScale, float targetFrameRate, int waitEvery, int frameSkips, int resetIterations, int numOfEnvironments, boolean doSerialiseIndidualSensors, boolean doSerialiseUnobservables) {
+  public static int createFSimulatorConfiguration(FlatBufferBuilder builder, int width, int height, boolean fullScreen, int qualityLevel, float timeScale, float targetFrameRate, int simulationType, int frameSkips, int resetIterations, int numOfEnvironments, boolean doSerialiseIndividualSensors, boolean doSerialiseUnobservables) {
     builder.prep(4, 44);
     builder.pad(2);
     builder.putBoolean(doSerialiseUnobservables);
-    builder.putBoolean(doSerialiseIndidualSensors);
+    builder.putBoolean(doSerialiseIndividualSensors);
     builder.putInt(numOfEnvironments);
     builder.putInt(resetIterations);
     builder.putInt(frameSkips);
-    builder.putInt(waitEvery);
+    builder.pad(3);
+    builder.putByte((byte)simulationType);
     builder.putFloat(targetFrameRate);
     builder.putFloat(timeScale);
     builder.putInt(qualityLevel);

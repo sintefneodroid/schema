@@ -10,9 +10,12 @@ using global::FlatBuffers;
 
 public enum FByteDataType : byte
 {
- PNG = 0,
- JPEG = 1,
- Other = 2,
+ UINT8 = 0,
+ FLOAT16 = 1,
+ FLOAT32 = 2,
+ PNG = 3,
+ JPEG = 4,
+ Other = 5,
 };
 
 public struct FSingle : IFlatbufferObject
@@ -266,11 +269,11 @@ public struct FByteArray : IFlatbufferObject
   public ArraySegment<byte>? GetBytesBytes() { return __p.__vector_as_arraysegment(4); }
 #endif
   public byte[] GetBytesArray() { return __p.__vector_as_array<byte>(4); }
-  public FByteDataType Type { get { int o = __p.__offset(6); return o != 0 ? (FByteDataType)__p.bb.Get(o + __p.bb_pos) : FByteDataType.PNG; } }
+  public FByteDataType Type { get { int o = __p.__offset(6); return o != 0 ? (FByteDataType)__p.bb.Get(o + __p.bb_pos) : FByteDataType.UINT8; } }
 
   public static Offset<FByteArray> CreateFByteArray(FlatBufferBuilder builder,
       VectorOffset bytesOffset = default(VectorOffset),
-      FByteDataType type = FByteDataType.PNG) {
+      FByteDataType type = FByteDataType.UINT8) {
     builder.StartObject(2);
     FByteArray.AddBytes(builder, bytesOffset);
     FByteArray.AddType(builder, type);
