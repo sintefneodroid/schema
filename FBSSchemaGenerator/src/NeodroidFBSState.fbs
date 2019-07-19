@@ -1,5 +1,6 @@
 include "NeodroidFBSShared.fbs";
 include "NeodroidFBSObservation.fbs";
+include "NeodroidFBSReaction.fbs";
 
 namespace Neodroid.FBS.State;
 
@@ -7,37 +8,39 @@ table FState {
   environment_name:string (key);
   frame_number:int;
 
+  observables:[float];
+  unobservables:FUnobservables;
+
   signal:float;
   terminated:bool;
   termination_reason:string;
 
-  total_energy_spent:float;
-
-  observations:[FOBS];
-
-  observables:[float];
-  unobservables:FUnobservables;
   environment_description:FEnvironmentDescription;
 
-  serialised_message:string;
+  last_reaction:Neodroid.FBS.Reaction.FReaction;
+  extra_serialised_message:string;
 }
 
-table FObjective{
-  objective_name:string;
-  max_episode_length:int;
-  solved_threshold:float;
-}
 
 table FEnvironmentDescription {
   objective:FObjective;
   available_objectives:[FObjective];
   actors:[FActor];
   configurables:[FConfigurable];
+  sensors:[FSensor];
+}
+
+
+table FObjective{
+  objective_name:string;
+  max_episode_length:int;
+  signal_space:FRange;
 }
 
 table FConfigurable {
   configurable_name:string (key);
-  observation:FObservation;
+  configurable_value:FObservation;
+  configurable_range:FRange (required);
 }
 
 table FActor {
@@ -48,13 +51,12 @@ table FActor {
 
 table FActuator{
   actuator_name:string (key);
-  valid_input:FRange (required);
-  energy_spent_since_reset: float;
+  actuator_range:FRange (required);
 }
 
-table FOBS {
-  observation_name:string (key);
-  observation:FObservation;
+table FSensor {
+  sensor_name:string (key);
+  sensor_value:FObservation;
 }
 
 root_type FState;

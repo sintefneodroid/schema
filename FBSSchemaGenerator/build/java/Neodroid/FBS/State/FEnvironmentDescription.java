@@ -29,13 +29,20 @@ public final class FEnvironmentDescription extends Table {
   public int configurablesLength() { int o = __offset(10); return o != 0 ? __vector_len(o) : 0; }
   public FConfigurable configurablesByKey(String key) { int o = __offset(10); return o != 0 ? FConfigurable.__lookup_by_key(null, __vector(o), key, bb) : null; }
   public FConfigurable configurablesByKey(FConfigurable obj, String key) { int o = __offset(10); return o != 0 ? FConfigurable.__lookup_by_key(obj, __vector(o), key, bb) : null; }
+  public FSensor sensors(int j) { return sensors(new FSensor(), j); }
+  public FSensor sensors(FSensor obj, int j) { int o = __offset(12); return o != 0 ? obj.__assign(__indirect(__vector(o) + j * 4), bb) : null; }
+  public int sensorsLength() { int o = __offset(12); return o != 0 ? __vector_len(o) : 0; }
+  public FSensor sensorsByKey(String key) { int o = __offset(12); return o != 0 ? FSensor.__lookup_by_key(null, __vector(o), key, bb) : null; }
+  public FSensor sensorsByKey(FSensor obj, String key) { int o = __offset(12); return o != 0 ? FSensor.__lookup_by_key(obj, __vector(o), key, bb) : null; }
 
   public static int createFEnvironmentDescription(FlatBufferBuilder builder,
       int objectiveOffset,
       int available_objectivesOffset,
       int actorsOffset,
-      int configurablesOffset) {
-    builder.startObject(4);
+      int configurablesOffset,
+      int sensorsOffset) {
+    builder.startObject(5);
+    FEnvironmentDescription.addSensors(builder, sensorsOffset);
     FEnvironmentDescription.addConfigurables(builder, configurablesOffset);
     FEnvironmentDescription.addActors(builder, actorsOffset);
     FEnvironmentDescription.addAvailableObjectives(builder, available_objectivesOffset);
@@ -43,7 +50,7 @@ public final class FEnvironmentDescription extends Table {
     return FEnvironmentDescription.endFEnvironmentDescription(builder);
   }
 
-  public static void startFEnvironmentDescription(FlatBufferBuilder builder) { builder.startObject(4); }
+  public static void startFEnvironmentDescription(FlatBufferBuilder builder) { builder.startObject(5); }
   public static void addObjective(FlatBufferBuilder builder, int objectiveOffset) { builder.addOffset(0, objectiveOffset, 0); }
   public static void addAvailableObjectives(FlatBufferBuilder builder, int availableObjectivesOffset) { builder.addOffset(1, availableObjectivesOffset, 0); }
   public static int createAvailableObjectivesVector(FlatBufferBuilder builder, int[] data) { builder.startVector(4, data.length, 4); for (int i = data.length - 1; i >= 0; i--) builder.addOffset(data[i]); return builder.endVector(); }
@@ -54,6 +61,9 @@ public final class FEnvironmentDescription extends Table {
   public static void addConfigurables(FlatBufferBuilder builder, int configurablesOffset) { builder.addOffset(3, configurablesOffset, 0); }
   public static int createConfigurablesVector(FlatBufferBuilder builder, int[] data) { builder.startVector(4, data.length, 4); for (int i = data.length - 1; i >= 0; i--) builder.addOffset(data[i]); return builder.endVector(); }
   public static void startConfigurablesVector(FlatBufferBuilder builder, int numElems) { builder.startVector(4, numElems, 4); }
+  public static void addSensors(FlatBufferBuilder builder, int sensorsOffset) { builder.addOffset(4, sensorsOffset, 0); }
+  public static int createSensorsVector(FlatBufferBuilder builder, int[] data) { builder.startVector(4, data.length, 4); for (int i = data.length - 1; i >= 0; i--) builder.addOffset(data[i]); return builder.endVector(); }
+  public static void startSensorsVector(FlatBufferBuilder builder, int numElems) { builder.startVector(4, numElems, 4); }
   public static int endFEnvironmentDescription(FlatBufferBuilder builder) {
     int o = builder.endObject();
     return o;

@@ -9,9 +9,9 @@ class FObservation(object):
     FTriple = 3
     FQuadruple = 4
     FArray = 5
-    FRB = 6
-    FET = 7
-    FQT = 8
+    FRBObs = 6
+    FETObs = 7
+    FQTObs = 8
     FString = 9
     FByteArray = 10
 

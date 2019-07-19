@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "NeodroidFBSShared.proto";
+import "NeodroidFBSTypes.proto";
+
+package Neodroid.PB.Reaction;
+
+message FReaction {
+  string (key) environment_name = 1;
+
+  FReactionParameters (required) parameters = 2;
+
+  [FMotion] motions = 3;
+
+  [FDisplayable] displayables = 4;
+  FUnobservables unobservables = 5;
+  [FConfiguration] configurations = 6;
+
+  string serialised_message = 7;
+}
+
+struct FReactionParameters{
+  bool terminable = 1;
+
+  bool step = 2;
+
+  bool reset = 3;
+  bool configure = 4;
+  bool describe = 5;
+
+  bool episode_count = 6;
+}
+
+message FMotion {
+  actor_name:string (key);
+  actuator_name:string (required);
+  strength:double;
+}
+
+message FConfiguration {
+  configurable_name:string (key);
+  configurable_value:double;
+}
+
+union FDisplayableValue {
+  FValue,
+  FValues,
+  FVector3s,
+  FValuedVector3s,
+  FString,
+  FByteArray
+}
+
+message FDisplayable {
+  displayable_name:string (key);
+  displayable_value:FDisplayableValue;
+}

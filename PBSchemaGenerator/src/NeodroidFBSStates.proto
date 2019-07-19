@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "NeodroidFBSState.proto";
+
+message FStates{
+  [FState] states  = 1;
+  string api_version = 2;
+  FSimulatorConfiguration simulator_configuration  = 3;
+}
+

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "NeodroidFBSShared.proto";
+import "NeodroidFBSTypes.proto";
+
+package Neodroid.PB.Observation;
+
+union FObservation {
+  FSingle,
+  FDouble,
+  FTriple,
+  FQuadruple,
+  FArray,
+
+  FRB,
+  FET,
+  FQT,
+
+  FString,
+  FByteArray
+}
+

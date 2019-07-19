@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "NeodroidFBSShared.proto";
+import "NeodroidFBSObservation.proto";
+import "NeodroidFBSReaction.proto";
+
+message FState {
+  string (key) environment_name = 1;
+  int frame_number = 2;
+
+  float signal = 3;
+  bool terminated = 4;
+  string termination_reason = 5;
+
+  float total_energy_spent = 6;
+
+  [FOBS] observations = 7;
+
+  [float] observables = 8;
+  FUnobservables unobservables = 9;
+  FEnvironmentDescription environment_description = 10;
+
+  Neodroid.FBS.Reaction.FReaction last_reaction = 11;
+  string serialised_message = 12;
+}
+
+message FObjective{
+  string objective_name = 1;
+  int max_episode_length = 2;
+  float solved_threshold = 3;
+}
+
+message FEnvironmentDescription {
+  FObjective objective = 1;
+  [FObjective] available_objectives = 2;
+  [FActor] actors = 3;
+  [FConfigurable] configurables = 4;
+}
+
+message FConfigurable {
+  string (key) configurable_name = 1;
+  FObservation observation = 2;
+}
+
+message FActor {
+  string (key) actor_name = 1;
+  bool alive = 2;
+  [FActuator] actuators = 3;
+}
+
+message FActuator{
+  string (key) actuator_name = 1;
+  FRange (required) valid_input = 2;
+  float energy_spent_since_reset = 3;
+}
+
+message FOBS {
+  string (key) observation_name = 1;
+  FObservation observation = 2;
+}
+

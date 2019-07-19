@@ -17,27 +17,20 @@ public final class FConfigurable extends Table {
   public String configurableName() { int o = __offset(4); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer configurableNameAsByteBuffer() { return __vector_as_bytebuffer(4, 1); }
   public ByteBuffer configurableNameInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 1); }
-  public byte observationType() { int o = __offset(6); return o != 0 ? bb.get(o + bb_pos) : 0; }
-  public Table observation(Table obj) { int o = __offset(8); return o != 0 ? __union(obj, o) : null; }
+  public byte configurableValueType() { int o = __offset(6); return o != 0 ? bb.get(o + bb_pos) : 0; }
+  public Table configurableValue(Table obj) { int o = __offset(8); return o != 0 ? __union(obj, o) : null; }
+  public Neodroid.FBS.FRange configurableRange() { return configurableRange(new Neodroid.FBS.FRange()); }
+  public Neodroid.FBS.FRange configurableRange(Neodroid.FBS.FRange obj) { int o = __offset(10); return o != 0 ? obj.__assign(o + bb_pos, bb) : null; }
 
-  public static int createFConfigurable(FlatBufferBuilder builder,
-      int configurable_nameOffset,
-      byte observation_type,
-      int observationOffset) {
-    builder.startObject(3);
-    FConfigurable.addObservation(builder, observationOffset);
-    FConfigurable.addConfigurableName(builder, configurable_nameOffset);
-    FConfigurable.addObservationType(builder, observation_type);
-    return FConfigurable.endFConfigurable(builder);
-  }
-
-  public static void startFConfigurable(FlatBufferBuilder builder) { builder.startObject(3); }
+  public static void startFConfigurable(FlatBufferBuilder builder) { builder.startObject(4); }
   public static void addConfigurableName(FlatBufferBuilder builder, int configurableNameOffset) { builder.addOffset(0, configurableNameOffset, 0); }
-  public static void addObservationType(FlatBufferBuilder builder, byte observationType) { builder.addByte(1, observationType, 0); }
-  public static void addObservation(FlatBufferBuilder builder, int observationOffset) { builder.addOffset(2, observationOffset, 0); }
+  public static void addConfigurableValueType(FlatBufferBuilder builder, byte configurableValueType) { builder.addByte(1, configurableValueType, 0); }
+  public static void addConfigurableValue(FlatBufferBuilder builder, int configurableValueOffset) { builder.addOffset(2, configurableValueOffset, 0); }
+  public static void addConfigurableRange(FlatBufferBuilder builder, int configurableRangeOffset) { builder.addStruct(3, configurableRangeOffset, 0); }
   public static int endFConfigurable(FlatBufferBuilder builder) {
     int o = builder.endObject();
     builder.required(o, 4);  // configurable_name
+    builder.required(o, 10);  // configurable_range
     return o;
   }
 

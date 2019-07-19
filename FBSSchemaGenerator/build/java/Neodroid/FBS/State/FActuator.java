@@ -17,18 +17,16 @@ public final class FActuator extends Table {
   public String actuatorName() { int o = __offset(4); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer actuatorNameAsByteBuffer() { return __vector_as_bytebuffer(4, 1); }
   public ByteBuffer actuatorNameInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 1); }
-  public Neodroid.FBS.FRange validInput() { return validInput(new Neodroid.FBS.FRange()); }
-  public Neodroid.FBS.FRange validInput(Neodroid.FBS.FRange obj) { int o = __offset(6); return o != 0 ? obj.__assign(o + bb_pos, bb) : null; }
-  public float energySpentSinceReset() { int o = __offset(8); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
+  public Neodroid.FBS.FRange actuatorRange() { return actuatorRange(new Neodroid.FBS.FRange()); }
+  public Neodroid.FBS.FRange actuatorRange(Neodroid.FBS.FRange obj) { int o = __offset(6); return o != 0 ? obj.__assign(o + bb_pos, bb) : null; }
 
-  public static void startFActuator(FlatBufferBuilder builder) { builder.startObject(3); }
+  public static void startFActuator(FlatBufferBuilder builder) { builder.startObject(2); }
   public static void addActuatorName(FlatBufferBuilder builder, int actuatorNameOffset) { builder.addOffset(0, actuatorNameOffset, 0); }
-  public static void addValidInput(FlatBufferBuilder builder, int validInputOffset) { builder.addStruct(1, validInputOffset, 0); }
-  public static void addEnergySpentSinceReset(FlatBufferBuilder builder, float energySpentSinceReset) { builder.addFloat(2, energySpentSinceReset, 0.0f); }
+  public static void addActuatorRange(FlatBufferBuilder builder, int actuatorRangeOffset) { builder.addStruct(1, actuatorRangeOffset, 0); }
   public static int endFActuator(FlatBufferBuilder builder) {
     int o = builder.endObject();
     builder.required(o, 4);  // actuator_name
-    builder.required(o, 6);  // valid_input
+    builder.required(o, 6);  // actuator_range
     return o;
   }
 

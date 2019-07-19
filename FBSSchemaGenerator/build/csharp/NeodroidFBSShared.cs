@@ -198,9 +198,12 @@ public struct FRange : IFlatbufferObject
   public int DecimalGranularity { get { return __p.bb.GetInt(__p.bb_pos + 0); } }
   public float MaxValue { get { return __p.bb.GetFloat(__p.bb_pos + 4); } }
   public float MinValue { get { return __p.bb.GetFloat(__p.bb_pos + 8); } }
+  public bool Normalised { get { return 0!=__p.bb.Get(__p.bb_pos + 12); } }
 
-  public static Offset<FRange> CreateFRange(FlatBufferBuilder builder, int DecimalGranularity, float MaxValue, float MinValue) {
-    builder.Prep(4, 12);
+  public static Offset<FRange> CreateFRange(FlatBufferBuilder builder, int DecimalGranularity, float MaxValue, float MinValue, bool Normalised) {
+    builder.Prep(4, 16);
+    builder.Pad(3);
+    builder.PutBool(Normalised);
     builder.PutFloat(MinValue);
     builder.PutFloat(MaxValue);
     builder.PutInt(DecimalGranularity);

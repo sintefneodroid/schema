@@ -1,6 +1,7 @@
-namespace Neodroid.FBS;
+syntax = "proto3";
 
-table FUnobservables {
+
+message FUnobservables {
   poses:[FQuaternionTransform];
   bodies:[FBody];
 }
@@ -43,7 +44,6 @@ struct FRange{
   decimal_granularity:int;
   max_value:float;
   min_value:float;
-  normalised:bool;
 }
 
 enum FSimulationType:ubyte {
@@ -68,6 +68,3 @@ struct FSimulatorConfiguration {
   do_serialise_unobservables:bool;
 }
 
-
-
-file_identifier "SHAR";

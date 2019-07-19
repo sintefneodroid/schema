@@ -33,14 +33,18 @@ class FObjective(object):
         return 0
 
     # FObjective
-    def SolvedThreshold(self):
+    def SignalSpace(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            x = o + self._tab.Pos
+            from .FRange import FRange
+            obj = FRange()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
 def FObjectiveStart(builder): builder.StartObject(3)
 def FObjectiveAddObjectiveName(builder, objectiveName): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(objectiveName), 0)
 def FObjectiveAddMaxEpisodeLength(builder, maxEpisodeLength): builder.PrependInt32Slot(1, maxEpisodeLength, 0)
-def FObjectiveAddSolvedThreshold(builder, solvedThreshold): builder.PrependFloat32Slot(2, solvedThreshold, 0.0)
+def FObjectiveAddSignalSpace(builder, signalSpace): builder.PrependStructSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(signalSpace), 0)
 def FObjectiveEnd(builder): return builder.EndObject()

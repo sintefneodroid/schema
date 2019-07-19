@@ -34,27 +34,35 @@ table FArray{
   ranges:[FRange];
 }
 
-table FRB {
+table FRBObs {
   body:FBody (required);
+  vel_range:FRange;
+  ang_range:FRange;
 }
 
-table FET {
+table FETObs {
   transform:FEulerTransform (required);
+  pos_range:FRange;
+  rot_range:FRange;
+  dir_range:FRange;
 }
 
-table FQT {
+table FQTObs {
   transform:FQuaternionTransform (required);
+  pos_range:FRange;
+  rot_range:FRange;
 }
 
 table FString {
   str:string (required);
 }
 
-enum FByteDataType:ubyte { UINT8, FLOAT16, FLOAT32,PNG, JPEG, Other }
+enum FByteDataType:ubyte { UINT8, FLOAT16, FLOAT32, PNG, JPEG, Other }
 
 table FByteArray {
   bytes:[ubyte] (required);
   type:FByteDataType;
+  shape:[int];
 }
 
 table FValue {

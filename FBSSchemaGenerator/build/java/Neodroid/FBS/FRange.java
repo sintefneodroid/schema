@@ -15,9 +15,12 @@ public final class FRange extends Struct {
   public int decimalGranularity() { return bb.getInt(bb_pos + 0); }
   public float maxValue() { return bb.getFloat(bb_pos + 4); }
   public float minValue() { return bb.getFloat(bb_pos + 8); }
+  public boolean normalised() { return 0!=bb.get(bb_pos + 12); }
 
-  public static int createFRange(FlatBufferBuilder builder, int decimalGranularity, float maxValue, float minValue) {
-    builder.prep(4, 12);
+  public static int createFRange(FlatBufferBuilder builder, int decimalGranularity, float maxValue, float minValue, boolean normalised) {
+    builder.prep(4, 16);
+    builder.pad(3);
+    builder.putBoolean(normalised);
     builder.putFloat(minValue);
     builder.putFloat(maxValue);
     builder.putInt(decimalGranularity);

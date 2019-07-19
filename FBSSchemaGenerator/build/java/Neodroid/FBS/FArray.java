@@ -19,7 +19,7 @@ public final class FArray extends Table {
   public ByteBuffer arrayAsByteBuffer() { return __vector_as_bytebuffer(4, 4); }
   public ByteBuffer arrayInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 4); }
   public FRange ranges(int j) { return ranges(new FRange(), j); }
-  public FRange ranges(FRange obj, int j) { int o = __offset(6); return o != 0 ? obj.__assign(__vector(o) + j * 12, bb) : null; }
+  public FRange ranges(FRange obj, int j) { int o = __offset(6); return o != 0 ? obj.__assign(__vector(o) + j * 16, bb) : null; }
   public int rangesLength() { int o = __offset(6); return o != 0 ? __vector_len(o) : 0; }
 
   public static int createFArray(FlatBufferBuilder builder,
@@ -36,7 +36,7 @@ public final class FArray extends Table {
   public static int createArrayVector(FlatBufferBuilder builder, float[] data) { builder.startVector(4, data.length, 4); for (int i = data.length - 1; i >= 0; i--) builder.addFloat(data[i]); return builder.endVector(); }
   public static void startArrayVector(FlatBufferBuilder builder, int numElems) { builder.startVector(4, numElems, 4); }
   public static void addRanges(FlatBufferBuilder builder, int rangesOffset) { builder.addOffset(1, rangesOffset, 0); }
-  public static void startRangesVector(FlatBufferBuilder builder, int numElems) { builder.startVector(12, numElems, 4); }
+  public static void startRangesVector(FlatBufferBuilder builder, int numElems) { builder.startVector(16, numElems, 4); }
   public static int endFArray(FlatBufferBuilder builder) {
     int o = builder.endObject();
     builder.required(o, 4);  // array

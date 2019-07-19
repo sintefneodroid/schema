@@ -10,13 +10,13 @@ public final class FObservation {
   public static final byte FTriple = 3;
   public static final byte FQuadruple = 4;
   public static final byte FArray = 5;
-  public static final byte FRB = 6;
-  public static final byte FET = 7;
-  public static final byte FQT = 8;
+  public static final byte FRBObs = 6;
+  public static final byte FETObs = 7;
+  public static final byte FQTObs = 8;
   public static final byte FString = 9;
   public static final byte FByteArray = 10;
 
-  public static final String[] names = { "NONE", "FSingle", "FDouble", "FTriple", "FQuadruple", "FArray", "FRB", "FET", "FQT", "FString", "FByteArray", };
+  public static final String[] names = { "NONE", "FSingle", "FDouble", "FTriple", "FQuadruple", "FArray", "FRBObs", "FETObs", "FQTObs", "FString", "FByteArray", };
 
   public static String name(int e) { return names[e]; }
 }

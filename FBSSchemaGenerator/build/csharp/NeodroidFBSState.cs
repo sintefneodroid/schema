@@ -26,82 +26,73 @@ public struct FState : IFlatbufferObject
 #endif
   public byte[] GetEnvironmentNameArray() { return __p.__vector_as_array<byte>(4); }
   public int FrameNumber { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
-  public float Signal { get { int o = __p.__offset(8); return o != 0 ? __p.bb.GetFloat(o + __p.bb_pos) : (float)0.0f; } }
-  public bool Terminated { get { int o = __p.__offset(10); return o != 0 ? 0!=__p.bb.Get(o + __p.bb_pos) : (bool)false; } }
-  public string TerminationReason { get { int o = __p.__offset(12); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+  public float Observables(int j) { int o = __p.__offset(8); return o != 0 ? __p.bb.GetFloat(__p.__vector(o) + j * 4) : (float)0; }
+  public int ObservablesLength { get { int o = __p.__offset(8); return o != 0 ? __p.__vector_len(o) : 0; } }
 #if ENABLE_SPAN_T
-  public Span<byte> GetTerminationReasonBytes() { return __p.__vector_as_span(12); }
+  public Span<byte> GetObservablesBytes() { return __p.__vector_as_span(8); }
 #else
-  public ArraySegment<byte>? GetTerminationReasonBytes() { return __p.__vector_as_arraysegment(12); }
+  public ArraySegment<byte>? GetObservablesBytes() { return __p.__vector_as_arraysegment(8); }
 #endif
-  public byte[] GetTerminationReasonArray() { return __p.__vector_as_array<byte>(12); }
-  public float TotalEnergySpent { get { int o = __p.__offset(14); return o != 0 ? __p.bb.GetFloat(o + __p.bb_pos) : (float)0.0f; } }
-  public FOBS? Observations(int j) { int o = __p.__offset(16); return o != 0 ? (FOBS?)(new FOBS()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
-  public int ObservationsLength { get { int o = __p.__offset(16); return o != 0 ? __p.__vector_len(o) : 0; } }
-  public FOBS? ObservationsByKey(string key) { int o = __p.__offset(16); return o != 0 ? FOBS.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
-  public float Observables(int j) { int o = __p.__offset(18); return o != 0 ? __p.bb.GetFloat(__p.__vector(o) + j * 4) : (float)0; }
-  public int ObservablesLength { get { int o = __p.__offset(18); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public float[] GetObservablesArray() { return __p.__vector_as_array<float>(8); }
+  public Neodroid.FBS.FUnobservables? Unobservables { get { int o = __p.__offset(10); return o != 0 ? (Neodroid.FBS.FUnobservables?)(new Neodroid.FBS.FUnobservables()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
+  public float Signal { get { int o = __p.__offset(12); return o != 0 ? __p.bb.GetFloat(o + __p.bb_pos) : (float)0.0f; } }
+  public bool Terminated { get { int o = __p.__offset(14); return o != 0 ? 0!=__p.bb.Get(o + __p.bb_pos) : (bool)false; } }
+  public string TerminationReason { get { int o = __p.__offset(16); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
 #if ENABLE_SPAN_T
-  public Span<byte> GetObservablesBytes() { return __p.__vector_as_span(18); }
+  public Span<byte> GetTerminationReasonBytes() { return __p.__vector_as_span(16); }
 #else
-  public ArraySegment<byte>? GetObservablesBytes() { return __p.__vector_as_arraysegment(18); }
+  public ArraySegment<byte>? GetTerminationReasonBytes() { return __p.__vector_as_arraysegment(16); }
 #endif
-  public float[] GetObservablesArray() { return __p.__vector_as_array<float>(18); }
-  public Neodroid.FBS.FUnobservables? Unobservables { get { int o = __p.__offset(20); return o != 0 ? (Neodroid.FBS.FUnobservables?)(new Neodroid.FBS.FUnobservables()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
-  public FEnvironmentDescription? EnvironmentDescription { get { int o = __p.__offset(22); return o != 0 ? (FEnvironmentDescription?)(new FEnvironmentDescription()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
-  public string SerialisedMessage { get { int o = __p.__offset(24); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+  public byte[] GetTerminationReasonArray() { return __p.__vector_as_array<byte>(16); }
+  public FEnvironmentDescription? EnvironmentDescription { get { int o = __p.__offset(18); return o != 0 ? (FEnvironmentDescription?)(new FEnvironmentDescription()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
+  public Neodroid.FBS.Reaction.FReaction? LastReaction { get { int o = __p.__offset(20); return o != 0 ? (Neodroid.FBS.Reaction.FReaction?)(new Neodroid.FBS.Reaction.FReaction()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
+  public string ExtraSerialisedMessage { get { int o = __p.__offset(22); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
 #if ENABLE_SPAN_T
-  public Span<byte> GetSerialisedMessageBytes() { return __p.__vector_as_span(24); }
+  public Span<byte> GetExtraSerialisedMessageBytes() { return __p.__vector_as_span(22); }
 #else
-  public ArraySegment<byte>? GetSerialisedMessageBytes() { return __p.__vector_as_arraysegment(24); }
+  public ArraySegment<byte>? GetExtraSerialisedMessageBytes() { return __p.__vector_as_arraysegment(22); }
 #endif
-  public byte[] GetSerialisedMessageArray() { return __p.__vector_as_array<byte>(24); }
+  public byte[] GetExtraSerialisedMessageArray() { return __p.__vector_as_array<byte>(22); }
 
   public static Offset<FState> CreateFState(FlatBufferBuilder builder,
       StringOffset environment_nameOffset = default(StringOffset),
       int frame_number = 0,
+      VectorOffset observablesOffset = default(VectorOffset),
+      Offset<Neodroid.FBS.FUnobservables> unobservablesOffset = default(Offset<Neodroid.FBS.FUnobservables>),
       float signal = 0.0f,
       bool terminated = false,
       StringOffset termination_reasonOffset = default(StringOffset),
-      float total_energy_spent = 0.0f,
-      VectorOffset observationsOffset = default(VectorOffset),
-      VectorOffset observablesOffset = default(VectorOffset),
-      Offset<Neodroid.FBS.FUnobservables> unobservablesOffset = default(Offset<Neodroid.FBS.FUnobservables>),
       Offset<FEnvironmentDescription> environment_descriptionOffset = default(Offset<FEnvironmentDescription>),
-      StringOffset serialised_messageOffset = default(StringOffset)) {
-    builder.StartObject(11);
-    FState.AddSerialisedMessage(builder, serialised_messageOffset);
+      Offset<Neodroid.FBS.Reaction.FReaction> last_reactionOffset = default(Offset<Neodroid.FBS.Reaction.FReaction>),
+      StringOffset extra_serialised_messageOffset = default(StringOffset)) {
+    builder.StartObject(10);
+    FState.AddExtraSerialisedMessage(builder, extra_serialised_messageOffset);
+    FState.AddLastReaction(builder, last_reactionOffset);
     FState.AddEnvironmentDescription(builder, environment_descriptionOffset);
-    FState.AddUnobservables(builder, unobservablesOffset);
-    FState.AddObservables(builder, observablesOffset);
-    FState.AddObservations(builder, observationsOffset);
-    FState.AddTotalEnergySpent(builder, total_energy_spent);
     FState.AddTerminationReason(builder, termination_reasonOffset);
     FState.AddSignal(builder, signal);
+    FState.AddUnobservables(builder, unobservablesOffset);
+    FState.AddObservables(builder, observablesOffset);
     FState.AddFrameNumber(builder, frame_number);
     FState.AddEnvironmentName(builder, environment_nameOffset);
     FState.AddTerminated(builder, terminated);
     return FState.EndFState(builder);
   }
 
-  public static void StartFState(FlatBufferBuilder builder) { builder.StartObject(11); }
+  public static void StartFState(FlatBufferBuilder builder) { builder.StartObject(10); }
   public static void AddEnvironmentName(FlatBufferBuilder builder, StringOffset environmentNameOffset) { builder.AddOffset(0, environmentNameOffset.Value, 0); }
   public static void AddFrameNumber(FlatBufferBuilder builder, int frameNumber) { builder.AddInt(1, frameNumber, 0); }
-  public static void AddSignal(FlatBufferBuilder builder, float signal) { builder.AddFloat(2, signal, 0.0f); }
-  public static void AddTerminated(FlatBufferBuilder builder, bool terminated) { builder.AddBool(3, terminated, false); }
-  public static void AddTerminationReason(FlatBufferBuilder builder, StringOffset terminationReasonOffset) { builder.AddOffset(4, terminationReasonOffset.Value, 0); }
-  public static void AddTotalEnergySpent(FlatBufferBuilder builder, float totalEnergySpent) { builder.AddFloat(5, totalEnergySpent, 0.0f); }
-  public static void AddObservations(FlatBufferBuilder builder, VectorOffset observationsOffset) { builder.AddOffset(6, observationsOffset.Value, 0); }
-  public static VectorOffset CreateObservationsVector(FlatBufferBuilder builder, Offset<FOBS>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
-  public static VectorOffset CreateObservationsVectorBlock(FlatBufferBuilder builder, Offset<FOBS>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
-  public static void StartObservationsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
-  public static void AddObservables(FlatBufferBuilder builder, VectorOffset observablesOffset) { builder.AddOffset(7, observablesOffset.Value, 0); }
+  public static void AddObservables(FlatBufferBuilder builder, VectorOffset observablesOffset) { builder.AddOffset(2, observablesOffset.Value, 0); }
   public static VectorOffset CreateObservablesVector(FlatBufferBuilder builder, float[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddFloat(data[i]); return builder.EndVector(); }
   public static VectorOffset CreateObservablesVectorBlock(FlatBufferBuilder builder, float[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartObservablesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
-  public static void AddUnobservables(FlatBufferBuilder builder, Offset<Neodroid.FBS.FUnobservables> unobservablesOffset) { builder.AddOffset(8, unobservablesOffset.Value, 0); }
-  public static void AddEnvironmentDescription(FlatBufferBuilder builder, Offset<FEnvironmentDescription> environmentDescriptionOffset) { builder.AddOffset(9, environmentDescriptionOffset.Value, 0); }
-  public static void AddSerialisedMessage(FlatBufferBuilder builder, StringOffset serialisedMessageOffset) { builder.AddOffset(10, serialisedMessageOffset.Value, 0); }
+  public static void AddUnobservables(FlatBufferBuilder builder, Offset<Neodroid.FBS.FUnobservables> unobservablesOffset) { builder.AddOffset(3, unobservablesOffset.Value, 0); }
+  public static void AddSignal(FlatBufferBuilder builder, float signal) { builder.AddFloat(4, signal, 0.0f); }
+  public static void AddTerminated(FlatBufferBuilder builder, bool terminated) { builder.AddBool(5, terminated, false); }
+  public static void AddTerminationReason(FlatBufferBuilder builder, StringOffset terminationReasonOffset) { builder.AddOffset(6, terminationReasonOffset.Value, 0); }
+  public static void AddEnvironmentDescription(FlatBufferBuilder builder, Offset<FEnvironmentDescription> environmentDescriptionOffset) { builder.AddOffset(7, environmentDescriptionOffset.Value, 0); }
+  public static void AddLastReaction(FlatBufferBuilder builder, Offset<Neodroid.FBS.Reaction.FReaction> lastReactionOffset) { builder.AddOffset(8, lastReactionOffset.Value, 0); }
+  public static void AddExtraSerialisedMessage(FlatBufferBuilder builder, StringOffset extraSerialisedMessageOffset) { builder.AddOffset(9, extraSerialisedMessageOffset.Value, 0); }
   public static Offset<FState> EndFState(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // environment_name
@@ -137,46 +128,6 @@ public struct FState : IFlatbufferObject
   }
 };
 
-public struct FObjective : IFlatbufferObject
-{
-  private Table __p;
-  public ByteBuffer ByteBuffer { get { return __p.bb; } }
-  public static FObjective GetRootAsFObjective(ByteBuffer _bb) { return GetRootAsFObjective(_bb, new FObjective()); }
-  public static FObjective GetRootAsFObjective(ByteBuffer _bb, FObjective obj) { return (obj.__assign(_bb.GetInt(_bb.Position) + _bb.Position, _bb)); }
-  public void __init(int _i, ByteBuffer _bb) { __p.bb_pos = _i; __p.bb = _bb; }
-  public FObjective __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
-
-  public string ObjectiveName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
-#if ENABLE_SPAN_T
-  public Span<byte> GetObjectiveNameBytes() { return __p.__vector_as_span(4); }
-#else
-  public ArraySegment<byte>? GetObjectiveNameBytes() { return __p.__vector_as_arraysegment(4); }
-#endif
-  public byte[] GetObjectiveNameArray() { return __p.__vector_as_array<byte>(4); }
-  public int MaxEpisodeLength { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
-  public float SolvedThreshold { get { int o = __p.__offset(8); return o != 0 ? __p.bb.GetFloat(o + __p.bb_pos) : (float)0.0f; } }
-
-  public static Offset<FObjective> CreateFObjective(FlatBufferBuilder builder,
-      StringOffset objective_nameOffset = default(StringOffset),
-      int max_episode_length = 0,
-      float solved_threshold = 0.0f) {
-    builder.StartObject(3);
-    FObjective.AddSolvedThreshold(builder, solved_threshold);
-    FObjective.AddMaxEpisodeLength(builder, max_episode_length);
-    FObjective.AddObjectiveName(builder, objective_nameOffset);
-    return FObjective.EndFObjective(builder);
-  }
-
-  public static void StartFObjective(FlatBufferBuilder builder) { builder.StartObject(3); }
-  public static void AddObjectiveName(FlatBufferBuilder builder, StringOffset objectiveNameOffset) { builder.AddOffset(0, objectiveNameOffset.Value, 0); }
-  public static void AddMaxEpisodeLength(FlatBufferBuilder builder, int maxEpisodeLength) { builder.AddInt(1, maxEpisodeLength, 0); }
-  public static void AddSolvedThreshold(FlatBufferBuilder builder, float solvedThreshold) { builder.AddFloat(2, solvedThreshold, 0.0f); }
-  public static Offset<FObjective> EndFObjective(FlatBufferBuilder builder) {
-    int o = builder.EndObject();
-    return new Offset<FObjective>(o);
-  }
-};
-
 public struct FEnvironmentDescription : IFlatbufferObject
 {
   private Table __p;
@@ -195,13 +146,18 @@ public struct FEnvironmentDescription : IFlatbufferObject
   public FConfigurable? Configurables(int j) { int o = __p.__offset(10); return o != 0 ? (FConfigurable?)(new FConfigurable()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int ConfigurablesLength { get { int o = __p.__offset(10); return o != 0 ? __p.__vector_len(o) : 0; } }
   public FConfigurable? ConfigurablesByKey(string key) { int o = __p.__offset(10); return o != 0 ? FConfigurable.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
+  public FSensor? Sensors(int j) { int o = __p.__offset(12); return o != 0 ? (FSensor?)(new FSensor()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
+  public int SensorsLength { get { int o = __p.__offset(12); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public FSensor? SensorsByKey(string key) { int o = __p.__offset(12); return o != 0 ? FSensor.__lookup_by_key(__p.__vector(o), key, __p.bb) : null; }
 
   public static Offset<FEnvironmentDescription> CreateFEnvironmentDescription(FlatBufferBuilder builder,
       Offset<FObjective> objectiveOffset = default(Offset<FObjective>),
       VectorOffset available_objectivesOffset = default(VectorOffset),
       VectorOffset actorsOffset = default(VectorOffset),
-      VectorOffset configurablesOffset = default(VectorOffset)) {
-    builder.StartObject(4);
+      VectorOffset configurablesOffset = default(VectorOffset),
+      VectorOffset sensorsOffset = default(VectorOffset)) {
+    builder.StartObject(5);
+    FEnvironmentDescription.AddSensors(builder, sensorsOffset);
     FEnvironmentDescription.AddConfigurables(builder, configurablesOffset);
     FEnvironmentDescription.AddActors(builder, actorsOffset);
     FEnvironmentDescription.AddAvailableObjectives(builder, available_objectivesOffset);
@@ -209,7 +165,7 @@ public struct FEnvironmentDescription : IFlatbufferObject
     return FEnvironmentDescription.EndFEnvironmentDescription(builder);
   }
 
-  public static void StartFEnvironmentDescription(FlatBufferBuilder builder) { builder.StartObject(4); }
+  public static void StartFEnvironmentDescription(FlatBufferBuilder builder) { builder.StartObject(5); }
   public static void AddObjective(FlatBufferBuilder builder, Offset<FObjective> objectiveOffset) { builder.AddOffset(0, objectiveOffset.Value, 0); }
   public static void AddAvailableObjectives(FlatBufferBuilder builder, VectorOffset availableObjectivesOffset) { builder.AddOffset(1, availableObjectivesOffset.Value, 0); }
   public static VectorOffset CreateAvailableObjectivesVector(FlatBufferBuilder builder, Offset<FObjective>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
@@ -223,9 +179,42 @@ public struct FEnvironmentDescription : IFlatbufferObject
   public static VectorOffset CreateConfigurablesVector(FlatBufferBuilder builder, Offset<FConfigurable>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
   public static VectorOffset CreateConfigurablesVectorBlock(FlatBufferBuilder builder, Offset<FConfigurable>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
   public static void StartConfigurablesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddSensors(FlatBufferBuilder builder, VectorOffset sensorsOffset) { builder.AddOffset(4, sensorsOffset.Value, 0); }
+  public static VectorOffset CreateSensorsVector(FlatBufferBuilder builder, Offset<FSensor>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateSensorsVectorBlock(FlatBufferBuilder builder, Offset<FSensor>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
+  public static void StartSensorsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static Offset<FEnvironmentDescription> EndFEnvironmentDescription(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     return new Offset<FEnvironmentDescription>(o);
+  }
+};
+
+public struct FObjective : IFlatbufferObject
+{
+  private Table __p;
+  public ByteBuffer ByteBuffer { get { return __p.bb; } }
+  public static FObjective GetRootAsFObjective(ByteBuffer _bb) { return GetRootAsFObjective(_bb, new FObjective()); }
+  public static FObjective GetRootAsFObjective(ByteBuffer _bb, FObjective obj) { return (obj.__assign(_bb.GetInt(_bb.Position) + _bb.Position, _bb)); }
+  public void __init(int _i, ByteBuffer _bb) { __p.bb_pos = _i; __p.bb = _bb; }
+  public FObjective __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
+
+  public string ObjectiveName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetObjectiveNameBytes() { return __p.__vector_as_span(4); }
+#else
+  public ArraySegment<byte>? GetObjectiveNameBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public byte[] GetObjectiveNameArray() { return __p.__vector_as_array<byte>(4); }
+  public int MaxEpisodeLength { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public Neodroid.FBS.FRange? SignalSpace { get { int o = __p.__offset(8); return o != 0 ? (Neodroid.FBS.FRange?)(new Neodroid.FBS.FRange()).__assign(o + __p.bb_pos, __p.bb) : null; } }
+
+  public static void StartFObjective(FlatBufferBuilder builder) { builder.StartObject(3); }
+  public static void AddObjectiveName(FlatBufferBuilder builder, StringOffset objectiveNameOffset) { builder.AddOffset(0, objectiveNameOffset.Value, 0); }
+  public static void AddMaxEpisodeLength(FlatBufferBuilder builder, int maxEpisodeLength) { builder.AddInt(1, maxEpisodeLength, 0); }
+  public static void AddSignalSpace(FlatBufferBuilder builder, Offset<Neodroid.FBS.FRange> signalSpaceOffset) { builder.AddStruct(2, signalSpaceOffset.Value, 0); }
+  public static Offset<FObjective> EndFObjective(FlatBufferBuilder builder) {
+    int o = builder.EndObject();
+    return new Offset<FObjective>(o);
   }
 };
 
@@ -245,27 +234,19 @@ public struct FConfigurable : IFlatbufferObject
   public ArraySegment<byte>? GetConfigurableNameBytes() { return __p.__vector_as_arraysegment(4); }
 #endif
   public byte[] GetConfigurableNameArray() { return __p.__vector_as_array<byte>(4); }
-  public FObservation ObservationType { get { int o = __p.__offset(6); return o != 0 ? (FObservation)__p.bb.Get(o + __p.bb_pos) : FObservation.NONE; } }
-  public TTable? Observation<TTable>() where TTable : struct, IFlatbufferObject { int o = __p.__offset(8); return o != 0 ? (TTable?)__p.__union<TTable>(o) : null; }
+  public FObservation ConfigurableValueType { get { int o = __p.__offset(6); return o != 0 ? (FObservation)__p.bb.Get(o + __p.bb_pos) : FObservation.NONE; } }
+  public TTable? ConfigurableValue<TTable>() where TTable : struct, IFlatbufferObject { int o = __p.__offset(8); return o != 0 ? (TTable?)__p.__union<TTable>(o) : null; }
+  public Neodroid.FBS.FRange? ConfigurableRange { get { int o = __p.__offset(10); return o != 0 ? (Neodroid.FBS.FRange?)(new Neodroid.FBS.FRange()).__assign(o + __p.bb_pos, __p.bb) : null; } }
 
-  public static Offset<FConfigurable> CreateFConfigurable(FlatBufferBuilder builder,
-      StringOffset configurable_nameOffset = default(StringOffset),
-      FObservation observation_type = FObservation.NONE,
-      int observationOffset = 0) {
-    builder.StartObject(3);
-    FConfigurable.AddObservation(builder, observationOffset);
-    FConfigurable.AddConfigurableName(builder, configurable_nameOffset);
-    FConfigurable.AddObservationType(builder, observation_type);
-    return FConfigurable.EndFConfigurable(builder);
-  }
-
-  public static void StartFConfigurable(FlatBufferBuilder builder) { builder.StartObject(3); }
+  public static void StartFConfigurable(FlatBufferBuilder builder) { builder.StartObject(4); }
   public static void AddConfigurableName(FlatBufferBuilder builder, StringOffset configurableNameOffset) { builder.AddOffset(0, configurableNameOffset.Value, 0); }
-  public static void AddObservationType(FlatBufferBuilder builder, FObservation observationType) { builder.AddByte(1, (byte)observationType, 0); }
-  public static void AddObservation(FlatBufferBuilder builder, int observationOffset) { builder.AddOffset(2, observationOffset, 0); }
+  public static void AddConfigurableValueType(FlatBufferBuilder builder, FObservation configurableValueType) { builder.AddByte(1, (byte)configurableValueType, 0); }
+  public static void AddConfigurableValue(FlatBufferBuilder builder, int configurableValueOffset) { builder.AddOffset(2, configurableValueOffset, 0); }
+  public static void AddConfigurableRange(FlatBufferBuilder builder, Offset<Neodroid.FBS.FRange> configurableRangeOffset) { builder.AddStruct(3, configurableRangeOffset.Value, 0); }
   public static Offset<FConfigurable> EndFConfigurable(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // configurable_name
+    builder.Required(o, 10);  // configurable_range
     return new Offset<FConfigurable>(o);
   }
 
@@ -384,17 +365,15 @@ public struct FActuator : IFlatbufferObject
   public ArraySegment<byte>? GetActuatorNameBytes() { return __p.__vector_as_arraysegment(4); }
 #endif
   public byte[] GetActuatorNameArray() { return __p.__vector_as_array<byte>(4); }
-  public Neodroid.FBS.FRange? ValidInput { get { int o = __p.__offset(6); return o != 0 ? (Neodroid.FBS.FRange?)(new Neodroid.FBS.FRange()).__assign(o + __p.bb_pos, __p.bb) : null; } }
-  public float EnergySpentSinceReset { get { int o = __p.__offset(8); return o != 0 ? __p.bb.GetFloat(o + __p.bb_pos) : (float)0.0f; } }
+  public Neodroid.FBS.FRange? ActuatorRange { get { int o = __p.__offset(6); return o != 0 ? (Neodroid.FBS.FRange?)(new Neodroid.FBS.FRange()).__assign(o + __p.bb_pos, __p.bb) : null; } }
 
-  public static void StartFActuator(FlatBufferBuilder builder) { builder.StartObject(3); }
+  public static void StartFActuator(FlatBufferBuilder builder) { builder.StartObject(2); }
   public static void AddActuatorName(FlatBufferBuilder builder, StringOffset actuatorNameOffset) { builder.AddOffset(0, actuatorNameOffset.Value, 0); }
-  public static void AddValidInput(FlatBufferBuilder builder, Offset<Neodroid.FBS.FRange> validInputOffset) { builder.AddStruct(1, validInputOffset.Value, 0); }
-  public static void AddEnergySpentSinceReset(FlatBufferBuilder builder, float energySpentSinceReset) { builder.AddFloat(2, energySpentSinceReset, 0.0f); }
+  public static void AddActuatorRange(FlatBufferBuilder builder, Offset<Neodroid.FBS.FRange> actuatorRangeOffset) { builder.AddStruct(1, actuatorRangeOffset.Value, 0); }
   public static Offset<FActuator> EndFActuator(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // actuator_name
-    builder.Required(o, 6);  // valid_input
+    builder.Required(o, 6);  // actuator_range
     return new Offset<FActuator>(o);
   }
 
@@ -425,52 +404,52 @@ public struct FActuator : IFlatbufferObject
   }
 };
 
-public struct FOBS : IFlatbufferObject
+public struct FSensor : IFlatbufferObject
 {
   private Table __p;
   public ByteBuffer ByteBuffer { get { return __p.bb; } }
-  public static FOBS GetRootAsFOBS(ByteBuffer _bb) { return GetRootAsFOBS(_bb, new FOBS()); }
-  public static FOBS GetRootAsFOBS(ByteBuffer _bb, FOBS obj) { return (obj.__assign(_bb.GetInt(_bb.Position) + _bb.Position, _bb)); }
+  public static FSensor GetRootAsFSensor(ByteBuffer _bb) { return GetRootAsFSensor(_bb, new FSensor()); }
+  public static FSensor GetRootAsFSensor(ByteBuffer _bb, FSensor obj) { return (obj.__assign(_bb.GetInt(_bb.Position) + _bb.Position, _bb)); }
   public void __init(int _i, ByteBuffer _bb) { __p.bb_pos = _i; __p.bb = _bb; }
-  public FOBS __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
+  public FSensor __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
-  public string ObservationName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
+  public string SensorName { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
 #if ENABLE_SPAN_T
-  public Span<byte> GetObservationNameBytes() { return __p.__vector_as_span(4); }
+  public Span<byte> GetSensorNameBytes() { return __p.__vector_as_span(4); }
 #else
-  public ArraySegment<byte>? GetObservationNameBytes() { return __p.__vector_as_arraysegment(4); }
+  public ArraySegment<byte>? GetSensorNameBytes() { return __p.__vector_as_arraysegment(4); }
 #endif
-  public byte[] GetObservationNameArray() { return __p.__vector_as_array<byte>(4); }
-  public FObservation ObservationType { get { int o = __p.__offset(6); return o != 0 ? (FObservation)__p.bb.Get(o + __p.bb_pos) : FObservation.NONE; } }
-  public TTable? Observation<TTable>() where TTable : struct, IFlatbufferObject { int o = __p.__offset(8); return o != 0 ? (TTable?)__p.__union<TTable>(o) : null; }
+  public byte[] GetSensorNameArray() { return __p.__vector_as_array<byte>(4); }
+  public FObservation SensorValueType { get { int o = __p.__offset(6); return o != 0 ? (FObservation)__p.bb.Get(o + __p.bb_pos) : FObservation.NONE; } }
+  public TTable? SensorValue<TTable>() where TTable : struct, IFlatbufferObject { int o = __p.__offset(8); return o != 0 ? (TTable?)__p.__union<TTable>(o) : null; }
 
-  public static Offset<FOBS> CreateFOBS(FlatBufferBuilder builder,
-      StringOffset observation_nameOffset = default(StringOffset),
-      FObservation observation_type = FObservation.NONE,
-      int observationOffset = 0) {
+  public static Offset<FSensor> CreateFSensor(FlatBufferBuilder builder,
+      StringOffset sensor_nameOffset = default(StringOffset),
+      FObservation sensor_value_type = FObservation.NONE,
+      int sensor_valueOffset = 0) {
     builder.StartObject(3);
-    FOBS.AddObservation(builder, observationOffset);
-    FOBS.AddObservationName(builder, observation_nameOffset);
-    FOBS.AddObservationType(builder, observation_type);
-    return FOBS.EndFOBS(builder);
+    FSensor.AddSensorValue(builder, sensor_valueOffset);
+    FSensor.AddSensorName(builder, sensor_nameOffset);
+    FSensor.AddSensorValueType(builder, sensor_value_type);
+    return FSensor.EndFSensor(builder);
   }
 
-  public static void StartFOBS(FlatBufferBuilder builder) { builder.StartObject(3); }
-  public static void AddObservationName(FlatBufferBuilder builder, StringOffset observationNameOffset) { builder.AddOffset(0, observationNameOffset.Value, 0); }
-  public static void AddObservationType(FlatBufferBuilder builder, FObservation observationType) { builder.AddByte(1, (byte)observationType, 0); }
-  public static void AddObservation(FlatBufferBuilder builder, int observationOffset) { builder.AddOffset(2, observationOffset, 0); }
-  public static Offset<FOBS> EndFOBS(FlatBufferBuilder builder) {
+  public static void StartFSensor(FlatBufferBuilder builder) { builder.StartObject(3); }
+  public static void AddSensorName(FlatBufferBuilder builder, StringOffset sensorNameOffset) { builder.AddOffset(0, sensorNameOffset.Value, 0); }
+  public static void AddSensorValueType(FlatBufferBuilder builder, FObservation sensorValueType) { builder.AddByte(1, (byte)sensorValueType, 0); }
+  public static void AddSensorValue(FlatBufferBuilder builder, int sensorValueOffset) { builder.AddOffset(2, sensorValueOffset, 0); }
+  public static Offset<FSensor> EndFSensor(FlatBufferBuilder builder) {
     int o = builder.EndObject();
-    builder.Required(o, 4);  // observation_name
-    return new Offset<FOBS>(o);
+    builder.Required(o, 4);  // sensor_name
+    return new Offset<FSensor>(o);
   }
 
-  public static VectorOffset CreateSortedVectorOfFOBS(FlatBufferBuilder builder, Offset<FOBS>[] offsets) {
-    Array.Sort(offsets, (Offset<FOBS> o1, Offset<FOBS> o2) => Table.CompareStrings(Table.__offset(4, o1.Value, builder.DataBuffer), Table.__offset(4, o2.Value, builder.DataBuffer), builder.DataBuffer));
+  public static VectorOffset CreateSortedVectorOfFSensor(FlatBufferBuilder builder, Offset<FSensor>[] offsets) {
+    Array.Sort(offsets, (Offset<FSensor> o1, Offset<FSensor> o2) => Table.CompareStrings(Table.__offset(4, o1.Value, builder.DataBuffer), Table.__offset(4, o2.Value, builder.DataBuffer), builder.DataBuffer));
     return builder.CreateVectorOfTables(offsets);
   }
 
-  public static FOBS? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
+  public static FSensor? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
     byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
@@ -485,7 +464,7 @@ public struct FOBS : IFlatbufferObject
         start += middle;
         span -= middle;
       } else {
-        return new FOBS().__assign(tableOffset, bb);
+        return new FSensor().__assign(tableOffset, bb);
       }
     }
     return null;

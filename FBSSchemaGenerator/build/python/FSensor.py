@@ -4,36 +4,36 @@
 
 import flatbuffers
 
-class FOBS(object):
+class FSensor(object):
     __slots__ = ['_tab']
 
     @classmethod
-    def GetRootAsFOBS(cls, buf, offset):
+    def GetRootAsFSensor(cls, buf, offset):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = FOBS()
+        x = FSensor()
         x.Init(buf, n + offset)
         return x
 
-    # FOBS
+    # FSensor
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # FOBS
-    def ObservationName(self):
+    # FSensor
+    def SensorName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # FOBS
-    def ObservationType(self):
+    # FSensor
+    def SensorValueType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-    # FOBS
-    def Observation(self):
+    # FSensor
+    def SensorValue(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             from flatbuffers.table import Table
@@ -42,8 +42,8 @@ class FOBS(object):
             return obj
         return None
 
-def FOBSStart(builder): builder.StartObject(3)
-def FOBSAddObservationName(builder, observationName): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(observationName), 0)
-def FOBSAddObservationType(builder, observationType): builder.PrependUint8Slot(1, observationType, 0)
-def FOBSAddObservation(builder, observation): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(observation), 0)
-def FOBSEnd(builder): return builder.EndObject()
+def FSensorStart(builder): builder.StartObject(3)
+def FSensorAddSensorName(builder, sensorName): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(sensorName), 0)
+def FSensorAddSensorValueType(builder, sensorValueType): builder.PrependUint8Slot(1, sensorValueType, 0)
+def FSensorAddSensorValue(builder, sensorValue): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(sensorValue), 0)
+def FSensorEnd(builder): return builder.EndObject()

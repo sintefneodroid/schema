@@ -19,72 +19,63 @@ public final class FState extends Table {
   public ByteBuffer environmentNameAsByteBuffer() { return __vector_as_bytebuffer(4, 1); }
   public ByteBuffer environmentNameInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 1); }
   public int frameNumber() { int o = __offset(6); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
-  public float signal() { int o = __offset(8); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
-  public boolean terminated() { int o = __offset(10); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
-  public String terminationReason() { int o = __offset(12); return o != 0 ? __string(o + bb_pos) : null; }
-  public ByteBuffer terminationReasonAsByteBuffer() { return __vector_as_bytebuffer(12, 1); }
-  public ByteBuffer terminationReasonInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 12, 1); }
-  public float totalEnergySpent() { int o = __offset(14); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
-  public FOBS observations(int j) { return observations(new FOBS(), j); }
-  public FOBS observations(FOBS obj, int j) { int o = __offset(16); return o != 0 ? obj.__assign(__indirect(__vector(o) + j * 4), bb) : null; }
-  public int observationsLength() { int o = __offset(16); return o != 0 ? __vector_len(o) : 0; }
-  public FOBS observationsByKey(String key) { int o = __offset(16); return o != 0 ? FOBS.__lookup_by_key(null, __vector(o), key, bb) : null; }
-  public FOBS observationsByKey(FOBS obj, String key) { int o = __offset(16); return o != 0 ? FOBS.__lookup_by_key(obj, __vector(o), key, bb) : null; }
-  public float observables(int j) { int o = __offset(18); return o != 0 ? bb.getFloat(__vector(o) + j * 4) : 0; }
-  public int observablesLength() { int o = __offset(18); return o != 0 ? __vector_len(o) : 0; }
-  public ByteBuffer observablesAsByteBuffer() { return __vector_as_bytebuffer(18, 4); }
-  public ByteBuffer observablesInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 18, 4); }
+  public float observables(int j) { int o = __offset(8); return o != 0 ? bb.getFloat(__vector(o) + j * 4) : 0; }
+  public int observablesLength() { int o = __offset(8); return o != 0 ? __vector_len(o) : 0; }
+  public ByteBuffer observablesAsByteBuffer() { return __vector_as_bytebuffer(8, 4); }
+  public ByteBuffer observablesInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 8, 4); }
   public Neodroid.FBS.FUnobservables unobservables() { return unobservables(new Neodroid.FBS.FUnobservables()); }
-  public Neodroid.FBS.FUnobservables unobservables(Neodroid.FBS.FUnobservables obj) { int o = __offset(20); return o != 0 ? obj.__assign(__indirect(o + bb_pos), bb) : null; }
+  public Neodroid.FBS.FUnobservables unobservables(Neodroid.FBS.FUnobservables obj) { int o = __offset(10); return o != 0 ? obj.__assign(__indirect(o + bb_pos), bb) : null; }
+  public float signal() { int o = __offset(12); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
+  public boolean terminated() { int o = __offset(14); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
+  public String terminationReason() { int o = __offset(16); return o != 0 ? __string(o + bb_pos) : null; }
+  public ByteBuffer terminationReasonAsByteBuffer() { return __vector_as_bytebuffer(16, 1); }
+  public ByteBuffer terminationReasonInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 16, 1); }
   public FEnvironmentDescription environmentDescription() { return environmentDescription(new FEnvironmentDescription()); }
-  public FEnvironmentDescription environmentDescription(FEnvironmentDescription obj) { int o = __offset(22); return o != 0 ? obj.__assign(__indirect(o + bb_pos), bb) : null; }
-  public String serialisedMessage() { int o = __offset(24); return o != 0 ? __string(o + bb_pos) : null; }
-  public ByteBuffer serialisedMessageAsByteBuffer() { return __vector_as_bytebuffer(24, 1); }
-  public ByteBuffer serialisedMessageInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 24, 1); }
+  public FEnvironmentDescription environmentDescription(FEnvironmentDescription obj) { int o = __offset(18); return o != 0 ? obj.__assign(__indirect(o + bb_pos), bb) : null; }
+  public Neodroid.FBS.Reaction.FReaction lastReaction() { return lastReaction(new Neodroid.FBS.Reaction.FReaction()); }
+  public Neodroid.FBS.Reaction.FReaction lastReaction(Neodroid.FBS.Reaction.FReaction obj) { int o = __offset(20); return o != 0 ? obj.__assign(__indirect(o + bb_pos), bb) : null; }
+  public String extraSerialisedMessage() { int o = __offset(22); return o != 0 ? __string(o + bb_pos) : null; }
+  public ByteBuffer extraSerialisedMessageAsByteBuffer() { return __vector_as_bytebuffer(22, 1); }
+  public ByteBuffer extraSerialisedMessageInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 22, 1); }
 
   public static int createFState(FlatBufferBuilder builder,
       int environment_nameOffset,
       int frame_number,
+      int observablesOffset,
+      int unobservablesOffset,
       float signal,
       boolean terminated,
       int termination_reasonOffset,
-      float total_energy_spent,
-      int observationsOffset,
-      int observablesOffset,
-      int unobservablesOffset,
       int environment_descriptionOffset,
-      int serialised_messageOffset) {
-    builder.startObject(11);
-    FState.addSerialisedMessage(builder, serialised_messageOffset);
+      int last_reactionOffset,
+      int extra_serialised_messageOffset) {
+    builder.startObject(10);
+    FState.addExtraSerialisedMessage(builder, extra_serialised_messageOffset);
+    FState.addLastReaction(builder, last_reactionOffset);
     FState.addEnvironmentDescription(builder, environment_descriptionOffset);
-    FState.addUnobservables(builder, unobservablesOffset);
-    FState.addObservables(builder, observablesOffset);
-    FState.addObservations(builder, observationsOffset);
-    FState.addTotalEnergySpent(builder, total_energy_spent);
     FState.addTerminationReason(builder, termination_reasonOffset);
     FState.addSignal(builder, signal);
+    FState.addUnobservables(builder, unobservablesOffset);
+    FState.addObservables(builder, observablesOffset);
     FState.addFrameNumber(builder, frame_number);
     FState.addEnvironmentName(builder, environment_nameOffset);
     FState.addTerminated(builder, terminated);
     return FState.endFState(builder);
   }
 
-  public static void startFState(FlatBufferBuilder builder) { builder.startObject(11); }
+  public static void startFState(FlatBufferBuilder builder) { builder.startObject(10); }
   public static void addEnvironmentName(FlatBufferBuilder builder, int environmentNameOffset) { builder.addOffset(0, environmentNameOffset, 0); }
   public static void addFrameNumber(FlatBufferBuilder builder, int frameNumber) { builder.addInt(1, frameNumber, 0); }
-  public static void addSignal(FlatBufferBuilder builder, float signal) { builder.addFloat(2, signal, 0.0f); }
-  public static void addTerminated(FlatBufferBuilder builder, boolean terminated) { builder.addBoolean(3, terminated, false); }
-  public static void addTerminationReason(FlatBufferBuilder builder, int terminationReasonOffset) { builder.addOffset(4, terminationReasonOffset, 0); }
-  public static void addTotalEnergySpent(FlatBufferBuilder builder, float totalEnergySpent) { builder.addFloat(5, totalEnergySpent, 0.0f); }
-  public static void addObservations(FlatBufferBuilder builder, int observationsOffset) { builder.addOffset(6, observationsOffset, 0); }
-  public static int createObservationsVector(FlatBufferBuilder builder, int[] data) { builder.startVector(4, data.length, 4); for (int i = data.length - 1; i >= 0; i--) builder.addOffset(data[i]); return builder.endVector(); }
-  public static void startObservationsVector(FlatBufferBuilder builder, int numElems) { builder.startVector(4, numElems, 4); }
-  public static void addObservables(FlatBufferBuilder builder, int observablesOffset) { builder.addOffset(7, observablesOffset, 0); }
+  public static void addObservables(FlatBufferBuilder builder, int observablesOffset) { builder.addOffset(2, observablesOffset, 0); }
   public static int createObservablesVector(FlatBufferBuilder builder, float[] data) { builder.startVector(4, data.length, 4); for (int i = data.length - 1; i >= 0; i--) builder.addFloat(data[i]); return builder.endVector(); }
   public static void startObservablesVector(FlatBufferBuilder builder, int numElems) { builder.startVector(4, numElems, 4); }
-  public static void addUnobservables(FlatBufferBuilder builder, int unobservablesOffset) { builder.addOffset(8, unobservablesOffset, 0); }
-  public static void addEnvironmentDescription(FlatBufferBuilder builder, int environmentDescriptionOffset) { builder.addOffset(9, environmentDescriptionOffset, 0); }
-  public static void addSerialisedMessage(FlatBufferBuilder builder, int serialisedMessageOffset) { builder.addOffset(10, serialisedMessageOffset, 0); }
+  public static void addUnobservables(FlatBufferBuilder builder, int unobservablesOffset) { builder.addOffset(3, unobservablesOffset, 0); }
+  public static void addSignal(FlatBufferBuilder builder, float signal) { builder.addFloat(4, signal, 0.0f); }
+  public static void addTerminated(FlatBufferBuilder builder, boolean terminated) { builder.addBoolean(5, terminated, false); }
+  public static void addTerminationReason(FlatBufferBuilder builder, int terminationReasonOffset) { builder.addOffset(6, terminationReasonOffset, 0); }
+  public static void addEnvironmentDescription(FlatBufferBuilder builder, int environmentDescriptionOffset) { builder.addOffset(7, environmentDescriptionOffset, 0); }
+  public static void addLastReaction(FlatBufferBuilder builder, int lastReactionOffset) { builder.addOffset(8, lastReactionOffset, 0); }
+  public static void addExtraSerialisedMessage(FlatBufferBuilder builder, int extraSerialisedMessageOffset) { builder.addOffset(9, extraSerialisedMessageOffset, 0); }
   public static int endFState(FlatBufferBuilder builder) {
     int o = builder.endObject();
     builder.required(o, 4);  // environment_name

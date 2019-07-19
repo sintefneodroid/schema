@@ -10,9 +10,9 @@ union FObservation {
   FQuadruple,
   FArray,
 
-  FRB,
-  FET,
-  FQT,
+  FRBObs,
+  FETObs,
+  FQTObs,
 
   FString,
   FByteArray

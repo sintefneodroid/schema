@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="736095c1-58e4-413c-b68e-84739dee4a24" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/PBSchemaGenerator/src/NeodroidFBSStates.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBSSchemaGenerator/build/csharp/NeodroidFBSState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FBSSchemaGenerator/build/csharp/NeodroidFBSState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBSSchemaGenerator/build/csharp/NeodroidFBSTypes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FBSSchemaGenerator/build/csharp/NeodroidFBSTypes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBSSchemaGenerator/build/java/Neodroid/FBS/FByteArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/FBSSchemaGenerator/build/java/Neodroid/FBS/FByteArray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBSSchemaGenerator/build/java/Neodroid/FBS/State/FState.java" beforeDir="false" afterPath="$PROJECT_DIR$/FBSSchemaGenerator/build/java/Neodroid/FBS/State/FState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBSSchemaGenerator/build/python/FByteArray.py" beforeDir="false" afterPath="$PROJECT_DIR$/FBSSchemaGenerator/build/python/FByteArray.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBSSchemaGenerator/build/python/FState.py" beforeDir="false" afterPath="$PROJECT_DIR$/FBSSchemaGenerator/build/python/FState.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBSSchemaGenerator/src/NeodroidFBSState.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/FBSSchemaGenerator/src/NeodroidFBSState.fbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBSSchemaGenerator/src/NeodroidFBSTypes.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/FBSSchemaGenerator/src/NeodroidFBSTypes.fbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PBSchemaGenerator/scripts/compile-csharp-classes.sh" beforeDir="false" afterPath="$PROJECT_DIR$/PBSchemaGenerator/scripts/compile-csharp-classes.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PBSchemaGenerator/scripts/compile-java-classes.sh" beforeDir="false" afterPath="$PROJECT_DIR$/PBSchemaGenerator/scripts/compile-java-classes.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PBSchemaGenerator/scripts/compile-python-classes.sh" beforeDir="false" afterPath="$PROJECT_DIR$/PBSchemaGenerator/scripts/compile-python-classes.sh" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="LbUWAwSF" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1679" />
+    <option name="width" value="1896" />
+    <option name="height" value="1059" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="736095c1-58e4-413c-b68e-84739dee4a24" name="Default Changelist" comment="" />
+      <created>1560237146811</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1560237146811</updated>
+      <workItem from="1560237150192" duration="47000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="47000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1679" y="0" width="1896" height="1059" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5587629" visible="true" weight="0.099892005" />
+      <window_info id="Structure" order="1" sideWeight="0.49643221" side_tool="true" weight="0.24853334" />
+      <window_info id="DB Browser" order="2" />
+      <window_info id="Find" order="3" sideWeight="0.44026548" side_tool="true" weight="0.101908244" />
+      <window_info id="Version Control" order="4" sideWeight="0.44123712" side_tool="true" weight="0.100328945" />
+      <window_info id="Concurrent Activities Diagram" order="5" sideWeight="0.4375" side_tool="true" visible="true" weight="0.26186666" />
+      <window_info id="TODO" order="6" sideWeight="0.25976562" side_tool="true" weight="0.19146666" />
+      <window_info id="Favorites" order="7" sideWeight="0.25390625" side_tool="true" weight="0.19146666" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="2" weight="0.4" />
+      <window_info anchor="bottom" id="DB Execution Console" order="3" />
+      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
+      <window_info anchor="right" id="Remote Host" />
+      <window_info anchor="right" id="Cargo" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Python Console" order="3" weight="0.20833333" />
+      <window_info anchor="right" id="Database" order="4" sideWeight="0.49643221" weight="0.32950193" />
+      <window_info anchor="right" id="Data View" order="5" />
+      <window_info anchor="right" id="Inspection Results" order="6" sideWeight="0.48046875" weight="0.29226667" />
+      <window_info anchor="right" id="Debug" order="7" sideWeight="0.7289157" weight="0.32089552" />
+      <window_info anchor="right" id="Run" order="8" sideWeight="0.6806785" weight="0.2675599" />
+      <window_info active="true" anchor="right" x="0" y="0" width="417" height="830" id="Documentation" order="9" visible="true" weight="0.20789906" />
+      <window_info anchor="right" id="SciView" order="10" sideWeight="0.51083815" weight="0.2866423" />
+      <window_info anchor="right" id="Terminal" order="11" sideWeight="0.6379056" side_tool="true" weight="0.23792124" />
+      <window_info anchor="right" id="Event Log" order="12" sideWeight="0.5618557" side_tool="true" weight="0.19857378" />
+      <window_info anchor="right" id="Coverage" order="13" sideWeight="0.31710914" side_tool="true" weight="0.23782468" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -18,23 +18,13 @@ public final class FObjective extends Table {
   public ByteBuffer objectiveNameAsByteBuffer() { return __vector_as_bytebuffer(4, 1); }
   public ByteBuffer objectiveNameInByteBuffer(ByteBuffer _bb) { return __vector_in_bytebuffer(_bb, 4, 1); }
   public int maxEpisodeLength() { int o = __offset(6); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
-  public float solvedThreshold() { int o = __offset(8); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
-
-  public static int createFObjective(FlatBufferBuilder builder,
-      int objective_nameOffset,
-      int max_episode_length,
-      float solved_threshold) {
-    builder.startObject(3);
-    FObjective.addSolvedThreshold(builder, solved_threshold);
-    FObjective.addMaxEpisodeLength(builder, max_episode_length);
-    FObjective.addObjectiveName(builder, objective_nameOffset);
-    return FObjective.endFObjective(builder);
-  }
+  public Neodroid.FBS.FRange signalSpace() { return signalSpace(new Neodroid.FBS.FRange()); }
+  public Neodroid.FBS.FRange signalSpace(Neodroid.FBS.FRange obj) { int o = __offset(8); return o != 0 ? obj.__assign(o + bb_pos, bb) : null; }
 
   public static void startFObjective(FlatBufferBuilder builder) { builder.startObject(3); }
   public static void addObjectiveName(FlatBufferBuilder builder, int objectiveNameOffset) { builder.addOffset(0, objectiveNameOffset, 0); }
   public static void addMaxEpisodeLength(FlatBufferBuilder builder, int maxEpisodeLength) { builder.addInt(1, maxEpisodeLength, 0); }
-  public static void addSolvedThreshold(FlatBufferBuilder builder, float solvedThreshold) { builder.addFloat(2, solvedThreshold, 0.0f); }
+  public static void addSignalSpace(FlatBufferBuilder builder, int signalSpaceOffset) { builder.addStruct(2, signalSpaceOffset, 0); }
   public static int endFObjective(FlatBufferBuilder builder) {
     int o = builder.endObject();
     return o;

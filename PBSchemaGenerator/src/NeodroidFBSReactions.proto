@@ -1,0 +1,13 @@
+
+syntax = "proto3";
+
+import "NeodroidFBSReaction.proto";
+
+package Neodroid.PB.Reaction;
+
+message FReactions{
+  reactions:[FReaction];
+  api_version:string;
+  simulator_configuration:FSimulatorConfiguration;
+  close:bool;
+}
